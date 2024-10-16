@@ -22,6 +22,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Add your global scripts and styles */}
+        <link rel="stylesheet" href="/richtexteditor/rte_theme_default.css" />
+        <script src="/richtexteditor/rte.js" ></script>
+        <script src='/richtexteditor/plugins/all_plugins.js' ></script>
+      </head>
       <body className={inter.className}>
         <Suspense>
           <StoreProvider>

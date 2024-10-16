@@ -18,7 +18,7 @@ export interface USER {
     sex?: SEX,
     languagesSpoken?: string[],
     languagesWishToLearn?: string[],
-    birthDate?: string,
+    birthDate?: string | null,
     email?: string,
     telegramUsername?: string,
     phoneNumber?: string,
@@ -31,7 +31,8 @@ export interface USER {
     city?: string,
     password?: string,
     confirmPassword?: string,
-    referalId?: string
+    referalId?: string,
+    avatar?: string,
 }
 
 export default function Registrationform() {

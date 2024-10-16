@@ -11,11 +11,12 @@ import { z } from "zod"
 import store from "@/redux/store"
 import { set_current_user } from "@/redux/features/UserSlice"
 import { useRouter } from "next/navigation"
-import { Login } from "@/lib/authentification"
+import { Login, resetPassWord } from "@/lib/authentification"
 
 export default function Signinform() {
 
     const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [identifier, setIdentifier] = useState('')
     const { replace } = useRouter()
 
     const form = useForm<z.infer<typeof SignFormSchema>>({
@@ -46,6 +47,12 @@ export default function Signinform() {
 
 
     }
+    const resetpassword = async () => {
+        if (identifier === '') return
+        const { state, msg } = await resetPassWord(identifier)
+        if (state === 'success') notification.success({ message: msg, showProgress: true, pauseOnHover: true })
+        if (state === 'error') notification.error({ message: msg, showProgress: true, pauseOnHover: true })
+    }
 
     return (
         <section className="mainContainer">
@@ -63,7 +70,10 @@ export default function Signinform() {
                                         Username or email
                                     </FormLabel>
                                     <FormControl>
-                                        <input type="text" placeholder="SandSmith" disabled={isLoading} className="formInput" {...field} />
+                                        <input type="text" placeholder="SandSmith" onChange={e => {
+                                            setIdentifier(e.target.value)
+                                            field.onChange(e)
+                                        }} value={field.value} disabled={isLoading} className="formInput" />
                                     </FormControl>
                                     <FormMessage className='text-sm text-red-500' />
                                 </FormItem>
@@ -85,7 +95,7 @@ export default function Signinform() {
                             )}
                         />
                         <div className="flex justify-end mt-6">
-                            <Link href="/forgot-password" className="text-sm text-navy font-semibold max-sm:pr-2"> Forgot password ? </Link>
+                            <Button type="link" onClick={e => resetpassword()} className="text-sm text-navy font-semibold max-sm:pr-2"> Forgot password ? </Button>
                         </div>
                         <Button htmlType="submit" type="primary" size="large" className=" w-full mt-7 " loading={isLoading} >
                             SIGN IN

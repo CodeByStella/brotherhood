@@ -1,4 +1,4 @@
-import { sendEmailVerification, signInWithEmailAndPassword, signOut ,createUserWithEmailAndPassword} from "firebase/auth";
+import { sendEmailVerification, signInWithEmailAndPassword, signOut ,createUserWithEmailAndPassword,sendPasswordResetEmail} from "firebase/auth";
 import { auth, db } from './firebase';
 import { getDoc, query, where, collection, getDocs,doc ,setDoc} from "firebase/firestore";
 // src/components/Register.js
@@ -127,7 +127,8 @@ export const Register = async(data:USER) => {
         city,
         referalId,
         followers:0,
-        following:0
+        following:0,
+        avatar:''
         // Add any additional fields you need
       };
 
@@ -156,3 +157,28 @@ export const Register = async(data:USER) => {
         console.error("Logout failed:", error);
     }
 };
+
+export const resetPassWord=async(identifier:string)=>{
+  try {
+    if(identifier===''){
+      throw new Error('Input email or username.')
+    }
+    let email = identifier;
+
+        // Check if identifier is username, then fetch email based on username
+        if (!identifier.includes('@')) {
+            const q = query(collection(db, "users"), where("userName", "==", identifier));
+            const querySnapshot = await getDocs(q);
+            if (querySnapshot.empty) {
+                throw new Error("User not found.");
+            }
+            email = querySnapshot.docs[0].data().email;
+            console.log({email})
+        }
+
+        await sendPasswordResetEmail(auth, email);
+        return {state:'success',msg:'Password reset email sent. Please check your inbox.'}
+  } catch (err:any) {
+    return {state:'error',msg:err.message}
+  }
+}

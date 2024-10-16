@@ -1,7 +1,7 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { auth, db } from "./firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { USER } from '@/constants'
 
 // Utility for persistent session
@@ -10,16 +10,22 @@ export const useAuthListener = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect( () => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
+        const unsubscribe = onAuthStateChanged(auth, async(user) => {
           if(user){
-             getDoc(doc(db, "users", user.uid)).then(
-              userDoc=>{
-                
+           
+           const userDoc=  (await getDoc(doc(db, "users", user.uid))).data()
+           if(userDoc?.email!==user.email){
+
+            const userRef = doc(db, 'users', user.uid);
+
+               await updateDoc(userRef, {
+                  email: user.email, 
+                });
+
+            }
                   
-                  setUser(userDoc.data() as USER);
-                  setLoading(false);
-              }
-            )
+              setUser(userDoc as USER);
+              setLoading(false);
            
           }
             

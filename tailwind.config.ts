@@ -19,7 +19,7 @@ const config = {
     },
     extend: {
       colors: {
-        button: "#F6F7F9", 
+        button: "#e6fffb", 
         navy: "#0050b3",
         orangeRed: "#CC3700",
         secondary: "#B6CDDF",

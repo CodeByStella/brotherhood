@@ -13,16 +13,16 @@ import { useRouter } from "next/navigation"
 import { useRef, useState } from "react"
 import { useSelector } from "react-redux"
 import { RootState } from "@/redux/store"
-import { Spin } from "antd"
+import { Button, Input, notification, Spin } from "antd"
+import { uploadFile } from "@/lib/uploadfile"
+import { saveBlog } from "@/lib/saveBlog"
 
 
 export default function ArticlesBlog() {
 
-    const [isPreviewLoading, setIsPreviewLoading] = useState<boolean>(false)
     const [isSaveLoading, setIsSaveLoading] = useState<boolean>(false)
     const { data } = useSelector((state: RootState) => state.user)
-    const { push, refresh } = useRouter()
-    const buttonRef = useRef<HTMLButtonElement | null>(null)
+    const { back, replace } = useRouter()
     const form = useForm<z.infer<typeof BlogPostSchema>>({
         resolver: zodResolver(BlogPostSchema),
         defaultValues: {
@@ -31,52 +31,71 @@ export default function ArticlesBlog() {
             title: "",
             content: "",
             references: [],
-            image: [],
+            image: undefined,
             tags: [],
         },
     })
 
 
-    async function handlePreview() {
-        const postData = form.getValues()
-        setIsPreviewLoading(true)
-        //TODO: Upadte this post id after creating the post. It's used for the url
-        let postId = "1rssggetegb" // FAKE POST ID
-        // TODO: MAke an HTTP request to upload the Post but with a status of "pending"
-        try {
+    // async function handlePreview() {
+    //     const postData = form.getValues()
+    //     setIsPreviewLoading(true)
+    //     //TODO: Upadte this post id after creating the post. It's used for the url
+    //     let postId = "1rssggetegb" // FAKE POST ID
+    //     // TODO: MAke an HTTP request to upload the Post but with a status of "pending"
+    //     try {
 
-        }
-        catch (error: any) {
+    //     }
+    //     catch (error: any) {
 
-        }
-        finally {
-            setIsPreviewLoading(false)
-        }
-        // Redirect the User to the Preview-post Page
-        push(`/preview-post/${postId}`)
-    }
+    //     }
+    //     finally {
+    //         setIsPreviewLoading(false)
+    //     }
+    //     // Redirect the User to the Preview-post Page
+    //     push(`/preview-post/${postId}`)
+    // }
     function handleClearForm() {
         // refresh the page to clear the form. form.reset() doesn't work
-        refresh()
+        back()
+        // form.reset()
     }
 
     async function onSubmit(values: z.infer<typeof BlogPostSchema>) {
-        const postData = {
-            postedBy: values.postedBy,
-            created_at: values.created_at,
-            title: values.title,
-            content: values.content,
-            references: values.references,
-            image: values.image[0],
-            tags: values.tags
-        }
-        setIsSaveLoading(false)
         try {
+            setIsSaveLoading(true)
+            let path = ''
+
+            if (values.image) {
+                path = await uploadFile(`image/${Date.now()}`, values.image)
+            }
+
+
+            const postData = {
+                postedBy: values.postedBy,
+                created_at: values.created_at,
+                title: values.title,
+                content: values.content,
+                references: values.references,
+                image: path,
+                tags: values.tags,
+                type: 'default'
+            }
             // TODO: Make an HTTP request to create the post permanently
+            const { state, msg } = await saveBlog(postData)
+
+            if (state === 'success') {
+                setIsSaveLoading(false)
+                notification.success({ message: msg, showProgress: true, pauseOnHover: true })
+                replace('/')
+            } else {
+                notification.error({ message: msg, showProgress: true, pauseOnHover: true })
+            }
+
 
         }
         catch (error: any) {
-
+            console.log(error)
         }
         finally {
             setIsSaveLoading(false)
@@ -93,12 +112,13 @@ export default function ArticlesBlog() {
                         control={form.control}
                         name="title"
                         render={({ field }) => (
-                            <FormItem className="flex items-center gap-10 mt-10">
-                                <FormLabel className="text-lg text-black font-medium">
-                                    Title
+                            <FormItem className="block sm:flex items-center gap-10 mt-10">
+                                <FormLabel className="text-lg text-black font-medium flex">
+                                    Title&nbsp; <span className="astrics" >*</span>
                                 </FormLabel>
                                 <FormControl>
-                                    <input type="text" placeholder="Title of your blog" {...field} className="max-sm:w-[280px] sm:w-[300px] md:w-[350px] lg:w-[380px] px-3 py-2.5 border border-gray-400 focus-visible:outline-none rounded-md bg-button" />
+
+                                    <Input size="large" {...field} placeholder="Title of your blog" />
                                 </FormControl>
                                 <FormMessage className='text-sm text-red-500' />
                             </FormItem>
@@ -111,10 +131,10 @@ export default function ArticlesBlog() {
                         render={({ field }) => (
                             <FormItem className="mt-10 flex flex-col justify-start gap-5">
                                 <FormLabel className="text-lg text-black font-medium">
-                                    Description
+                                    Description&nbsp; <span className="astrics" >*</span>
                                 </FormLabel>
                                 <FormControl>
-                                    <TextEditor fieldchange={field.onChange} />
+                                    <TextEditor defaultValue={field.value} onChange={field.onChange}   /* fieldchange={field.onChange}  */ />
                                 </FormControl>
                                 <FormMessage className='text-sm text-red-500' />
                             </FormItem>
@@ -154,23 +174,22 @@ export default function ArticlesBlog() {
                             <FormItem>
                                 <FormControl>
                                     <Tags fieldchange={field.onChange} title="Add tags to your Post" />
+
                                 </FormControl>
                                 <FormMessage className='text-sm text-red-500' />
                             </FormItem>
                         )}
                     />
-                    <div className="flex flex-wrap items-center gap-16 mt-14">
-                        <button type="button" onClick={handlePreview} className="border border-orangeRed w-[180px] h-auto max-sm:text-sm sm:text-base text-orangeRed font-semibold px-4 py-2 rounded-md focus-visible:outline-none" >
-                            {isPreviewLoading ? <Spin spinning={isPreviewLoading} /> : "Preview Page"}
-                        </button>
-                        <div className="flex items-center gap-6">
-                            <button type="button" onClick={handleClearForm} className="border border-navy text-navy max-sm:text-sm sm:text-base font-semibold px-4 py-2 rounded-md focus-visible:outline-none">
-                                Cancel
-                            </button>
-                            <button type="submit" className="bg-navy w-[100px] h-auto max-sm:text-sm sm:text-base text-white font-semibold px-4 py-2 rounded-md focus-visible:outline-none">
-                                {isSaveLoading ? <Spin spinning={isSaveLoading} /> : "Save"}
-                            </button>
-                        </div>
+                    <div className="flex  gap-4  mt-14 float-end ">
+
+                        {/* <Button size="large" type="default" loading={isPreviewLoading} className="border w-36  text-orangeRed border-orangeRed" onClick={handlePreview} >Preview Page</Button> */}
+                        {/* <div className="flex gap-4  justify-between" > */}
+                        <Button size="large" type="default" onClick={handleClearForm} className="border  w-36 text-navy border-navy">Cancel</Button>
+                        <Button size="large" htmlType="submit" type="primary" className=" w-36" loading={isSaveLoading}    >Save</Button>
+
+                        {/* </div> */}
+
+
                     </div>
                 </form>
             </Form>

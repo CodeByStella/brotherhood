@@ -1,6 +1,6 @@
 'use client'
 
-import { message } from "antd";
+import { Button, Input, message, Space } from "antd";
 import { useState } from "react";
 import { IoCloseOutline } from "react-icons/io5";
 
@@ -58,12 +58,16 @@ export default function Tags({ fieldchange, title }: TagsProps) {
                     )
                 })}
             </div>
-            {tags.length !== 5 && <div className="flex flex-col justify-start gap-5 mt-10">
-                <input type="text" placeholder="add tags here" value={inputControlledValue} onChange={(e) => setInputControlledValue(e.target.value)} className="w-[250px] rounded-md border border-gray-300 bg-button px-6 py-2.5 focus-visible:outline-none" />
-                <button type="button" onClick={handleAddTag} className="mt-5 w-[150px] bg-navy rounded-md px-3 py-2 text-white max-sm:text-sm sm:text-base">
+            {tags.length !== 5 && <Space.Compact className="w-full mt-6">
+                <Input type="text" onPressEnter={e => {
+                    e.preventDefault()
+                    handleAddTag()
+                }} placeholder="Type and press enter" value={inputControlledValue} onChange={(e) => setInputControlledValue(e.target.value)} size="large" />
+                <Button htmlType="button" type="primary" onClick={handleAddTag} size="large">
                     Add Tag
-                </button>
-            </div>}
+                </Button>
+            </Space.Compact>
+            }
         </section>
     )
 }

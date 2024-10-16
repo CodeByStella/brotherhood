@@ -17,13 +17,14 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/Components/ui/popover"
-import Avatar from "../Small Pieces/Avatar";
+// import Avatar from "../Small Pieces/Avatar";
 import store, { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-import { Spin } from "antd";
+import { Avatar, Button, Spin } from "antd";
 import { set_current_user } from "@/redux/features/UserSlice";
 import { logoutUser } from "@/lib/authentification";
+import { UserOutlined } from "@ant-design/icons";
 
 
 export default function NavButtons() {
@@ -76,7 +77,11 @@ export default function NavButtons() {
                     }
                 </Popover>
             ) : (
-                <Link href="/register" className="max-lg:hidden w-[110px] h-auto border border-navy px-3 py-2 text-sm text-navy rounded-md focus-visible:outline-none font-semibold"> Get Started </Link>
+                <Link href="/register" >
+                    <Button className="w-[110px]" size="large" >
+                        Get Started
+                    </Button>
+                </Link>
             )}
             {isAuthenticated && data ? (
                 <div className="flex items-center max-sm:gap-2 sm:gap-4">
@@ -85,7 +90,13 @@ export default function NavButtons() {
                         <div className="absolute right-1.5 top-0 rounded-full w-2 h-2 bg-orangeRed" />
                     </Link>
                     <div className="hover:cursor-pointer">
-                        <Avatar navigateToProfile={true} />
+                        <Avatar
+                            onClick={() => push('/profile')}
+                            className="bg-navy"
+                            size={{ xs: 32, sm: 36, md: 40, lg: 44, xl: 48, xxl: 52 }}
+                            icon={<UserOutlined />}
+                            src={data.avatar}
+                        />
                     </div>
                     <div className="flex gap-2">
                         <h3 className="max-sm:hidden sm:block text-base text-black font-semibold"> {data.firstName} </h3>
@@ -97,7 +108,14 @@ export default function NavButtons() {
                             </PopoverTrigger>
                             {openPopUp && <PopoverContent className="max-sm:w-[200px] sm:w-[250px] h-auto max-sm:mr-4 py-5 my-5 focus-visible:outline-none">
                                 <div className="flex flex-col justify-start px-6">
-                                    <Avatar closePopUp={true} setOpenPopUp={setOpenPopUp} />
+                                    {/* <Avatar closePopUp={true} setOpenPopUp={setOpenPopUp} /> */}
+                                    <Avatar
+                                        onClick={() => push('/profile')}
+                                        className="bg-navy"
+                                        size={{ xs: 32, sm: 36, md: 40, lg: 44, xl: 48, xxl: 52 }}
+                                        icon={<UserOutlined />}
+                                        src={data.avatar}
+                                    />
                                     <div className="flex items-start gap-10 mt-4">
                                         <h3 className="text-base text-black font-medium"> {data?.firstName} </h3>
                                         <MdKeyboardArrowRight className="w-5 h-5" />
@@ -124,14 +142,11 @@ export default function NavButtons() {
                                     </div>
                                 </div>
                                 <button className="max-sm:w-[100px] sm:w-[150px] flex justify-center items-center py-2.5 mx-6 mt-6 bg-navy text-sm text-white rounded-md">
-                                    {isLoading ?
-                                        <Spin spinning={isLoading} />
-                                        :
-                                        <div onClick={handleLogout} className="flex items-center gap-3">
-                                            <p> Log out </p>
-                                            <SlLogout className="" />
-                                        </div>
-                                    }
+
+                                    <div onClick={handleLogout} className="flex items-center gap-3">
+                                        <p> Log out </p>
+                                        <SlLogout className="" />
+                                    </div>
                                 </button>
                             </PopoverContent>
                             }
@@ -139,7 +154,11 @@ export default function NavButtons() {
                     </div>
                 </div>
             ) :
-                <Link href='/sign-in' className="bg-navy text-white px-6 max-sm:py-2 sm:py-3 text-sm focus-visible:outline-none rounded-md font-semibold"> Sign In </Link>
+                <Link href='/sign-in'>
+                    <Button type="primary" className="w-[110px]" size="large" >
+                        Sign In
+                    </Button>
+                </Link>
             }
         </section>
     )

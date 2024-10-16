@@ -38,7 +38,7 @@ export default function Carousel({ slides, autoSlide = false, autoSlideInterval 
             <div className="flex relative transition-transform ease-out duration-500" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
                 {slides.map((slide, i) => {
                     return (
-                        <Image key={i} src={slide} alt="slider-image" width={1160} height={600} className="max-sm:rounded-md sm:rounded-[15px] md:rounded-[20px] object-cover" />
+                        <Image priority key={i} src={slide} alt="slider-image" width={1160} height={600} className="max-sm:rounded-md sm:rounded-[15px] md:rounded-[20px] object-cover" />
                     )
                 })}
                 <div className="absolute inset-0 bg-black opacity-60 max-sm:rounded-md sm:rounded-[25px] md:rounded-[30px]" />

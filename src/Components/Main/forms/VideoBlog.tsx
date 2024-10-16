@@ -13,74 +13,74 @@ import ThumbnailUploader from "@/Components/Small Pieces/ThumbnailUploader"
 import Tags from "@/Components/Small Pieces/Tags"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
-import { Spin } from "antd"
+import { Button, Input, Spin } from "antd"
 
 export default function VideoBlog() {
 
     const { data } = useSelector((state: RootState) => state.user)
     const [isPreviewLoading, setIsPreviewLoading] = useState<boolean>(false)
     const [isSaveLoading, setIsSaveLoading] = useState<boolean>(false)
-    const { refresh, push } = useRouter()
+    const { back, replace } = useRouter()
 
     const form = useForm<z.infer<typeof VideoBlogSchema>>({
         resolver: zodResolver(VideoBlogSchema),
         defaultValues: {
-            description: "",
-            references: [],
-            title: "",
-            thumbnail: [],
-            videoLink: "",
             postedBy: `${data?.firstName} ${data?.lastName}`,
+            created_at: new Date(),
+            title: "",
+            content: "",
+            references: [],
+            image: undefined,
             tags: [],
-            created_at: new Date()
+            videoLink: "",
         },
     })
 
-    async function handlePreview() {
-        const postData = form.getValues()
-        setIsPreviewLoading(true)
-        //TODO: Upadte this post id after creating the post. It's used for the url
-        let postId = "1rssggetegb" // FAKE POST ID
-        // TODO: MAke an HTTP request to upload the Post but with a status of "pending"
-        try {
+    // async function handlePreview() {
+    //     const postData = form.getValues()
+    //     setIsPreviewLoading(true)
+    //     //TODO: Upadte this post id after creating the post. It's used for the url
+    //     let postId = "1rssggetegb" // FAKE POST ID
+    //     // TODO: MAke an HTTP request to upload the Post but with a status of "pending"
+    //     try {
 
-        }
-        catch (error: any) {
+    //     }
+    //     catch (error: any) {
 
-        }
-        finally {
-            setIsPreviewLoading(false)
-        }
-        // Redirect the User to the Preview-post Page
-        push(`/preview-post/${postId}`)
-    }
+    //     }
+    //     finally {
+    //         setIsPreviewLoading(false)
+    //     }
+    //     // Redirect the User to the Preview-post Page
+    //     push(`/preview-post/${postId}`)
+    // }
     function handleClearForm() {
         // refresh the page to clear the form. form.reset() doesn't work
-        refresh()
+        back()
     }
     async function onSubmit(values: z.infer<typeof VideoBlogSchema>) {
-        const postData = {
-            postedBy: values.postedBy,
-            created_at: values.created_at,
-            description: values.description,
-            title: values.title,
-            videoLink: values.videoLink,
-            references: values.references,
-            thumbnail: values.thumbnail[0],
-            tags: values.tags
-        }
-        setIsSaveLoading(false)
-        try {
-            // TODO: Make an HTTP request to create the post permanently
+        // const postData = {
+        //     postedBy: values.postedBy,
+        //     created_at: values.created_at,
+        //     description: values.description,
+        //     title: values.title,
+        //     videoLink: values.videoLink,
+        //     references: values.references,
+        //     thumbnail: values.thumbnail[0],
+        //     tags: values.tags
+        // }
+        // setIsSaveLoading(false)
+        // try {
+        //     // TODO: Make an HTTP request to create the post permanently
 
-        }
-        catch (error: any) {
+        // }
+        // catch (error: any) {
 
-        }
-        finally {
-            setIsSaveLoading(false)
-        }
-        //TODO: Redirect the user after creating the post
+        // }
+        // finally {
+        //     setIsSaveLoading(false)
+        // }
+        // //TODO: Redirect the user after creating the post
     }
 
     return (
@@ -92,12 +92,13 @@ export default function VideoBlog() {
                         control={form.control}
                         name="title"
                         render={({ field }) => (
-                            <FormItem className="flex flex-wrap items-center max-sm:gap-4 sm:gap-10">
-                                <FormLabel className="text-lg text-black font-medium">
-                                    Title
+                            <FormItem className="block sm:flex items-center gap-10 mt-10">
+                                <FormLabel className="text-lg text-black font-medium flex">
+                                    Title&nbsp; <span className="astrics" >*</span>
                                 </FormLabel>
                                 <FormControl>
-                                    <input type="text" placeholder="Title of your blog" {...field} className="max-sm:w-[250px] sm:max-sm:w-[280px] sm:w-[300px] md:w-[350px] lg:w-[380px] px-3 py-2 border border-gray-400 focus-visible:outline-none rounded-md bg-button" />
+
+                                    <Input size="large"  {...field} placeholder="Title of your blog" />
                                 </FormControl>
                                 <FormMessage className='text-sm text-red-500' />
                             </FormItem>
@@ -108,12 +109,13 @@ export default function VideoBlog() {
                         control={form.control}
                         name="videoLink"
                         render={({ field }) => (
-                            <FormItem className="flex flex-wrap items-center max-sm:gap-3 sm:gap-6 mt-10">
-                                <FormLabel className="text-lg text-black pt-3 font-medium">
-                                    Enter video link
+                            <FormItem className="block sm:flex items-center gap-10 mt-10">
+                                <FormLabel className="text-lg whitespace-nowrap text-black font-medium flex">
+                                    Video link&nbsp; <span className="astrics" >*</span>
                                 </FormLabel>
                                 <FormControl>
-                                    <input type="text" placeholder="https://www.youtube.com/tutorial" {...field} className="max-sm:w-[250px] sm:w-[300px] md:w-[350px] lg:w-[380px] px-3 py-2 border border-gray-400 focus-visible:outline-none rounded-md bg-button" />
+
+                                    <Input size="large" {...field} placeholder="https://www.youtube.com/tutorial" />
                                 </FormControl>
                                 <FormMessage className='text-sm text-red-500' />
                             </FormItem>
@@ -122,14 +124,14 @@ export default function VideoBlog() {
                     {/* Description */}
                     <FormField
                         control={form.control}
-                        name="description"
+                        name="content"
                         render={({ field }) => (
-                            <FormItem className="mt-14 flex flex-col justify-start gap-3">
+                            <FormItem className="mt-10 flex flex-col justify-start gap-5">
                                 <FormLabel className="text-lg text-black font-medium">
-                                    Description
+                                    Description&nbsp; <span className="astrics" >*</span>
                                 </FormLabel>
                                 <FormControl>
-                                    <TextEditor fieldchange={field.onChange} />
+                                    <TextEditor defaultValue={field.value} onChange={field.onChange}   /* fieldchange={field.onChange}  */ />
                                 </FormControl>
                                 <FormMessage className='text-sm text-red-500' />
                             </FormItem>
@@ -140,7 +142,7 @@ export default function VideoBlog() {
                         control={form.control}
                         name="references"
                         render={({ field }) => (
-                            <FormItem className="mt-14">
+                            <FormItem>
                                 <FormControl>
                                     <References fieldchange={field.onChange} />
                                 </FormControl>
@@ -148,11 +150,12 @@ export default function VideoBlog() {
                             </FormItem>
                         )}
                     />
+                    {/* Uploading the Image */}
                     <FormField
                         control={form.control}
-                        name="thumbnail"
+                        name="image"
                         render={({ field }) => (
-                            <FormItem className="mt-14">
+                            <FormItem>
                                 <FormControl>
                                     <ThumbnailUploader fieldchange={field.onChange} title="Featured Image" mediaUrl="./public/postImage.png" />
                                 </FormControl>
@@ -165,26 +168,25 @@ export default function VideoBlog() {
                         control={form.control}
                         name="tags"
                         render={({ field }) => (
-                            <FormItem className="mt-10">
+                            <FormItem>
                                 <FormControl>
                                     <Tags fieldchange={field.onChange} title="Add tags to your Post" />
+
                                 </FormControl>
                                 <FormMessage className='text-sm text-red-500' />
                             </FormItem>
                         )}
                     />
-                    <div className="flex flex-wrap items-center gap-16 mt-16">
-                        <button type="button" onClick={handlePreview} className="border border-orangeRed w-[180px] h-auto max-sm:text-sm sm:text-base text-orangeRed font-semibold px-4 py-2 rounded-md focus-visible:outline-none" >
-                            {isPreviewLoading ? <Spin spinning={isPreviewLoading} /> : "Preview Page"}
-                        </button>
-                        <div className="flex items-center gap-6">
-                            <button type="button" onClick={handleClearForm} className="border border-navy text-navy max-sm:text-sm sm:text-base font-semibold px-4 py-2 rounded-md focus-visible:outline-none">
-                                Cancel
-                            </button>
-                            <button type="submit" className="bg-navy w-[100px] h-auto max-sm:text-sm sm:text-base text-white font-semibold px-4 py-2 rounded-md focus-visible:outline-none">
-                                {isSaveLoading ? <Spin spinning={isSaveLoading} /> : "Save"}
-                            </button>
-                        </div>
+                    <div className="flex  gap-4  mt-14 float-end ">
+
+                        {/* <Button size="large" type="default" loading={isPreviewLoading} className="border w-36  text-orangeRed border-orangeRed" onClick={handlePreview} >Preview Page</Button> */}
+                        {/* <div className="flex gap-4  justify-between" > */}
+                        <Button size="large" type="default" onClick={handleClearForm} className="border  w-36 text-navy border-navy">Cancel</Button>
+                        <Button size="large" htmlType="submit" type="primary" className=" w-36" loading={isSaveLoading}    >Save</Button>
+
+                        {/* </div> */}
+
+
                     </div>
                 </form>
             </Form>

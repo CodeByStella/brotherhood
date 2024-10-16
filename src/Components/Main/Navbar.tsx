@@ -59,7 +59,7 @@ export default function Navbar() {
 
     return (
         <nav className='relative inset-x-0 top-0 mt-5 max-md:px-7 md:px-7 xl:px-20'>
-            <div className="flex items-center justify-between sm:gap-20 md:gap-10">
+            <div className="flex items-center justify-between ">
                 <div className="flex items-start">
                     <button onClick={() => setOpenSidebarNav(true)} className="max-sm:mr-2.5">
                         <RiMenuLine className="md:hidden w-8 h-8 text-navy" />

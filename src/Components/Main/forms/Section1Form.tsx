@@ -10,7 +10,8 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { useRouter } from "next/navigation"
 import { Button, DatePicker } from "antd"
-import moment from 'moment'
+import languages from '@/constants/languages.json'
+import { Select as AntSelect } from 'antd'
 
 export interface GeneralSectionsFormProps {
     userData: USER | undefined
@@ -22,6 +23,7 @@ export interface GeneralSectionsFormProps {
 export default function Section1Form({ userData, setUserData, setFilledSection, setCurrentlySelected }: GeneralSectionsFormProps) {
     const { push } = useRouter()
 
+
     const form = useForm<z.infer<typeof Section1FormSchema>>({
         resolver: zodResolver(Section1FormSchema),
         defaultValues: {
@@ -30,16 +32,14 @@ export default function Section1Form({ userData, setUserData, setFilledSection, 
             userName: userData?.userName || "",
             nickName: userData?.nickName || "",
             sex: userData?.sex || undefined,
-            languagesSpoken: userData?.languagesSpoken?.join(",") || "",
-            languagesWishToLearn: userData?.languagesWishToLearn?.join(",") || "",
+            languagesSpoken: userData?.languagesSpoken,
+            languagesWishToLearn: userData?.languagesWishToLearn,
             birthDate: userData?.birthDate || ""
         },
     })
 
     function onSubmit(values: z.infer<typeof Section1FormSchema>) {
 
-        const cleanLanguagesSpoken = values.languagesSpoken.split(',').map(lang => lang.trim()).filter(lang => lang !== "");
-        const cleanLanguagesWishToLearn = values.languagesWishToLearn.split(',').map(lang => lang.trim()).filter(lang => lang !== "");
 
 
 
@@ -50,8 +50,8 @@ export default function Section1Form({ userData, setUserData, setFilledSection, 
             userName: values.userName,
             nickName: values.nickName,
             sex: values.sex,
-            languagesSpoken: cleanLanguagesSpoken,
-            languagesWishToLearn: cleanLanguagesWishToLearn,
+            languagesSpoken: values.languagesSpoken,
+            languagesWishToLearn: values.languagesWishToLearn,
             birthDate: values.birthDate
         })
         setFilledSection((filledSections) => [...filledSections, 2])
@@ -72,14 +72,14 @@ export default function Section1Form({ userData, setUserData, setFilledSection, 
                             control={form.control}
                             name="sex"
                             render={({ field }) => (
-                                <FormItem className="formContainer xl:mt-8">
+                                <FormItem className="formContainer xl:mt-6">
                                     <FormLabel className="formLabel">
                                         Sex
                                         <span className="astrics"> * </span>
                                     </FormLabel>
                                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                                         <FormControl className="focus:border-none focus-visible:outline-none py-4 ">
-                                            <SelectTrigger {...field} className="bg-button px-3 py-2.5 focus:border-none focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-button focus:ring-0">
+                                            <SelectTrigger {...field} className="bg-button px-3 py-2.5 border-none focus:border-none focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-button focus:ring-0">
                                                 <SelectValue placeholder="Select gender" />
                                             </SelectTrigger>
                                         </FormControl>
@@ -97,15 +97,26 @@ export default function Section1Form({ userData, setUserData, setFilledSection, 
                             control={form.control}
                             name="languagesSpoken"
                             render={({ field }) => (
-                                <FormItem className="formContainer">
+                                <FormItem className="formContainer xl:mt-6">
                                     <FormLabel className="formLabel">
                                         Languages Spoken
                                         <span className="astrics"> * </span>
                                     </FormLabel>
                                     <FormControl>
                                         <div className="flex flex-col justify-start gap-2">
-                                            <p className="text-xs"> use comma to separate each entries </p>
-                                            <input type="text" placeholder="English , French, German" className="formInput mt-2" {...field} />
+                                            <AntSelect
+                                                // className="mt-8"
+                                                variant='filled'
+                                                size="large"
+                                                mode="multiple"
+                                                placeholder="English , French, German"
+                                                {...field}
+                                                style={{ width: '100%' }}
+                                                options={languages.map(({ language }) => ({
+                                                    value: language,
+                                                    label: language,
+                                                }))}
+                                            />
                                         </div>
                                     </FormControl>
                                     <FormMessage className='text-sm text-red-500' />
@@ -119,15 +130,26 @@ export default function Section1Form({ userData, setUserData, setFilledSection, 
                             control={form.control}
                             name="languagesWishToLearn"
                             render={({ field }) => (
-                                <FormItem className="formContainer">
+                                <FormItem className="formContainer  xl:mt-6">
                                     <FormLabel className="formLabel">
                                         Languages wishing to learn
                                         <span className="astrics"> * </span>
                                     </FormLabel>
                                     <FormControl>
                                         <div className="flex flex-col justify-start gap-2">
-                                            <p className="text-xs"> use comma to separate each entries </p>
-                                            <input type="text" placeholder="English , French, German" className="formInput mt-2" {...field} />
+                                            <AntSelect
+                                                className=" relative"
+                                                variant='filled'
+                                                size="large"
+                                                mode="multiple"
+                                                placeholder="English , French, German"
+                                                {...field}
+                                                style={{ width: '100%' }}
+                                                options={languages.map(({ language }) => ({
+                                                    value: language,
+                                                    label: language,
+                                                }))}
+                                            />
                                         </div>
                                     </FormControl>
                                     <FormMessage className='text-sm text-red-500' />
@@ -139,7 +161,7 @@ export default function Section1Form({ userData, setUserData, setFilledSection, 
                             control={form.control}
                             name="birthDate"
                             render={({ field }) => (
-                                <FormItem className="formContainer xl:mt-8">
+                                <FormItem className="formContainer xl:mt-7">
                                     <FormLabel className="formLabel">
                                         Birthdate
                                     </FormLabel>

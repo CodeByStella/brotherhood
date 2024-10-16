@@ -10,10 +10,10 @@
       @apply px-3 py-2 border border-navy text-sm text-navy rounded-lg font-semibold
   }
   .editProfileFormContainer {
-    @apply flex max-xl:flex-wrap gap-8 mt-10
+    @apply block md:flex max-xl:flex-wrap gap-8 mt-10
   }
   .registrationFormContainer {
-    @apply mt-10 flex flex-1 flex-col items-center flex-wrap mx-auto
+    @apply mt-10 flex flex-1 flex-col items-center flex-wrap mx-auto max-w-[1000px]
   }
   .registrationForm {
     @apply flex flex-col  gap-3 mt-14
@@ -22,7 +22,7 @@
     @apply flex max-xl:flex-col justify-start max-md:gap-6 md:gap-10 lg:gap-12
   }
   .formInput {
-    @apply max-sm:w-[260px] sm:w-[300px] md:w-[350px] lg:w-[380px] px-3 py-2.5 bg-button border-none rounded-md focus-visible:outline-none disabled:cursor-not-allowed text-black text-sm
+    @apply w-full px-3 py-2.5 bg-button border-none rounded-md focus-visible:outline-none disabled:cursor-not-allowed text-black text-sm
   }
   .formLabel {
     @apply text-[15px] text-black font-medium
@@ -40,10 +40,10 @@
     @apply max-sm:w-[150px] sm:w-[200px] bg-button px-4 py-2 text-sm text-black rounded-md border border-gray-400 focus-visible:outline-none disabled:cursor-not-allowed
   }
   .formContainer {
-    @apply flex flex-1 flex-col justify-start gap-3
+    @apply flex flex-1 flex-col justify-start gap-2 mt-4
   }
   .astrics {
-    @apply text-red-500  text-sm
+    @apply text-red-500  
   }
   .formNextButton {
     @apply  flex justify-center w-[100px] text-base  px-8 py-2 
