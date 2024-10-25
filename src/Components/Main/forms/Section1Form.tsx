@@ -105,7 +105,7 @@ export default function Section1Form({ userData, setUserData, setFilledSection, 
                                     <FormControl>
                                         <div className="flex flex-col justify-start gap-2">
                                             <AntSelect
-                                                // className="mt-8"
+                                                className="bg-button"
                                                 variant='filled'
                                                 size="large"
                                                 mode="multiple"
@@ -138,7 +138,7 @@ export default function Section1Form({ userData, setUserData, setFilledSection, 
                                     <FormControl>
                                         <div className="flex flex-col justify-start gap-2">
                                             <AntSelect
-                                                className=" relative"
+                                                className=" relative bg-button"
                                                 variant='filled'
                                                 size="large"
                                                 mode="multiple"

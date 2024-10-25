@@ -130,7 +130,7 @@ export const Section3FormSchema = z
     confirmPassword: z
       .string()
       .min(1, { message: "You need to re-enter your password" }),
-    referalId: z.string().optional(),
+    referralId: z.string().optional(),
   })
   .refine(
     (values) => {
@@ -162,6 +162,7 @@ export const EditProfileSchema = z.object({
     .refine((val) => !val || val.length > 5, {
       message: "You need to re-enter your password",
     }),
+    referralId: z.string().optional()
 });
 export const BlogPostSchema = z.object({
   postedBy: z.string().optional(),

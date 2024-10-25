@@ -4,7 +4,7 @@ import Image from "next/image"
 import { CommentType } from "./CommentList";
 import CommentForm from "./CommentForm";
 import { MdOutlineReply } from "react-icons/md";
-import { AiOutlineLike, AiOutlineDislike, AiOutlineComment } from "react-icons/ai";
+import { AiOutlineLike, AiOutlineComment } from "react-icons/ai";
 import Avatar from "./Avatar";
 import { useState } from "react";
 import { convertDate } from "@/utils";
@@ -29,27 +29,24 @@ export default function CommentShow({ commentId, comments }: CommentShowProps) {
     // Rendring all the children comments and childrens of these children comments
     const renderedChildren = children.map((child) => {
         return (
-        <CommentShow key={child.id} commentId={child.id} comments={comments} />
+            <CommentShow key={child.id} commentId={child.id} comments={comments} />
         );
     });
 
-    async function handleLike(){
+    async function handleLike() {
 
     }
 
-    async function handleDislike(){
-
-    }
 
     return (
         <div className="bg-button rounded-md max-sm:pl-4 sm:pl-7 max-sm:pr-4 sm:pr-14 py-6 md:ml-10 mt-2 mb-1">
             <div className="flex items-start gap-6">
                 {mainComment.user.avatar ? <Image
-                src={mainComment.user.avatar || ""}
-                alt="user image"
-                width={40}
-                height={40}
-                className="w-10 h-10 rounded-full"
+                    src={mainComment.user.avatar || ""}
+                    alt="user image"
+                    width={40}
+                    height={40}
+                    className="w-10 h-10 rounded-full"
                 /> : <Avatar />}
                 <div className="flex-1 max-sm:space-y-1 sm:space-y-3">
                     <div className="flex flex-wrap items-center gap-4">
@@ -58,7 +55,7 @@ export default function CommentShow({ commentId, comments }: CommentShowProps) {
                         </p>
                         <p className="text-sm text-stone-500"> {convertDate(mainComment.createdAt)} </p>
                         {mainComment.parent && <div className="flex items-center gap-2">
-                            <MdOutlineReply className="w-5 h-5 text-black"/>
+                            <MdOutlineReply className="w-5 h-5 text-black" />
                             <p className="text-sm text-stone-500"> {mainComment.parent?.user.firstName} {mainComment.parent?.user.lastName} </p>
                         </div>}
                     </div>
@@ -81,18 +78,13 @@ export default function CommentShow({ commentId, comments }: CommentShowProps) {
                                 </button>
                                 <p className="text-sm text-stone-600 font-semibold pt-1"> {mainComment.likes} </p>
                             </div>
-                            <div className="flex items-center gap-3">
-                                <button onClick={handleDislike}>
-                                    <AiOutlineDislike className="w-6 h-6 mt-1.5 text-stone-600" />
-                                </button>
-                                <p className="text-sm text-stone-600 font-semibold pt-1"> {mainComment.dislikes} </p>
-                            </div>
+
                         </div>
                     </div>
                     {openReplyBox && <CommentForm parentId={mainComment.parentId} blogCategoryId={mainComment.blogCategoryId} />}
                 </div>
             </div>
-            { showComments && children.length > 0 && <div className="sm:pl-4">
+            {showComments && children.length > 0 && <div className="sm:pl-4">
                 {renderedChildren}
             </div>}
         </div>

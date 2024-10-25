@@ -10,7 +10,6 @@ export type CommentType = {
     createdAt: string,
     updatedAt?: string,
     likes: number,
-    dislikes: number,
     comments: number,
     parent?: {
         user: {
@@ -26,7 +25,7 @@ interface CommentListProps {
     comments: CommentType[]
 }
 
-export default async function CommentList({comments}: CommentListProps) {
+export default async function CommentList({ comments }: CommentListProps) {
 
     // The first comments
     const topLevelComments = comments.filter(
@@ -35,11 +34,11 @@ export default async function CommentList({comments}: CommentListProps) {
 
     const renderedComments = topLevelComments.map((comment) => {
         return (
-        <CommentShow
-            key={comment.id}
-            commentId={comment.id}
-            comments={comments}
-        />
+            <CommentShow
+                key={comment.id}
+                commentId={comment.id}
+                comments={comments}
+            />
         );
     });
 

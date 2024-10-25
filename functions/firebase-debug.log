@@ -1,0 +1,288 @@
+[debug] [2024-10-24T18:28:14.142Z] ----------------------------------------------------------------------
+[debug] [2024-10-24T18:28:14.144Z] Command:       C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions
+[debug] [2024-10-24T18:28:14.145Z] CLI Version:   13.22.1
+[debug] [2024-10-24T18:28:14.145Z] Platform:      win32
+[debug] [2024-10-24T18:28:14.146Z] Node Version:  v18.20.2
+[debug] [2024-10-24T18:28:14.147Z] Time:          Fri Oct 25 2024 02:28:14 GMT+0800 (China Standard Time)
+[debug] [2024-10-24T18:28:14.147Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-10-24T18:28:14.151Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2024-10-24T18:28:14.299Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-10-24T18:28:14.300Z] > authorizing via signed-in user (okovtun747@gmail.com)
+[debug] [2024-10-24T18:28:14.304Z] Checked if tokens are valid: false, expires at: 1729791929622
+[debug] [2024-10-24T18:28:14.304Z] Checked if tokens are valid: false, expires at: 1729791929622
+[debug] [2024-10-24T18:28:14.305Z] > refreshing access token with scopes: []
+[debug] [2024-10-24T18:28:14.306Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2024-10-24T18:28:14.306Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-10-24T18:28:15.281Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2024-10-24T18:28:15.281Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2024-10-24T18:28:15.881Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/276631612429 [none]
+[debug] [2024-10-24T18:28:15.891Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2024-10-24T18:28:15.892Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2024-10-24T18:28:16.739Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/276631612429 200
+[debug] [2024-10-24T18:28:16.739Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/276631612429 {"projectId":"brothers-website-439019","projectNumber":"276631612429","displayName":"Brothers website","name":"projects/brothers-website-439019","resources":{"hostingSite":"brothers-website-439019","storageBucket":"brothers-website-439019.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_0f702f27-6342-45f1-9093-3b0665bfbf77"}
+[debug] [2024-10-24T18:28:16.741Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-10-24T18:28:16.741Z] > authorizing via signed-in user (okovtun747@gmail.com)
+[debug] [2024-10-24T18:28:16.741Z] [iam] checking project brothers-website-439019 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2024-10-24T18:28:16.742Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:28:16.742Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:28:16.742Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/brothers-website-439019:testIamPermissions [none]
+[debug] [2024-10-24T18:28:16.742Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/brothers-website-439019:testIamPermissions x-goog-quota-user=projects/brothers-website-439019
+[debug] [2024-10-24T18:28:16.743Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/brothers-website-439019:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2024-10-24T18:28:17.783Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/brothers-website-439019:testIamPermissions 200
+[debug] [2024-10-24T18:28:17.783Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/brothers-website-439019:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2024-10-24T18:28:17.784Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:28:17.785Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:28:17.785Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/276631612429/serviceAccounts/276631612429@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2024-10-24T18:28:17.785Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/276631612429/serviceAccounts/276631612429@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2024-10-24T18:28:18.920Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/276631612429/serviceAccounts/276631612429@appspot.gserviceaccount.com:testIamPermissions 404
+[debug] [2024-10-24T18:28:18.920Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/276631612429/serviceAccounts/276631612429@appspot.gserviceaccount.com:testIamPermissions {"error":{"code":404,"message":"Unknown service account","status":"NOT_FOUND"}}
+[debug] [2024-10-24T18:28:18.922Z] [functions] service account IAM check errored, deploy may fail: HTTP Error: 404, Unknown service account {"name":"FirebaseError","children":[],"context":{"body":{"error":{"code":404,"message":"Unknown service account","status":"NOT_FOUND"}},"response":{"statusCode":404}},"exit":1,"message":"HTTP Error: 404, Unknown service account","status":404}
+[info] 
+[info] === Deploying to 'brothers-website-439019'...
+[info] 
+[info] i  deploying functions 
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] Running command: npm --prefix "$RESOURCE_DIR" run build
+[info] +  functions: Finished running predeploy script. 
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[debug] [2024-10-24T18:28:39.980Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:28:39.981Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:28:39.981Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:28:39.981Z] Checked if tokens are valid: true, expires at: 1729798094282
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[debug] [2024-10-24T18:28:39.983Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:28:39.983Z] Checked if tokens are valid: true, expires at: 1729798094282
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2024-10-24T18:28:39.985Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:28:39.985Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:28:39.985Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/cloudfunctions.googleapis.com [none]
+[debug] [2024-10-24T18:28:39.986Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/brothers-website-439019
+[debug] [2024-10-24T18:28:39.990Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/runtimeconfig.googleapis.com [none]
+[debug] [2024-10-24T18:28:39.990Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/brothers-website-439019
+[debug] [2024-10-24T18:28:39.996Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/cloudbuild.googleapis.com [none]
+[debug] [2024-10-24T18:28:39.996Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/cloudbuild.googleapis.com x-goog-quota-user=projects/brothers-website-439019
+[debug] [2024-10-24T18:28:39.999Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/artifactregistry.googleapis.com [none]
+[debug] [2024-10-24T18:28:39.999Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/artifactregistry.googleapis.com x-goog-quota-user=projects/brothers-website-439019
+[debug] [2024-10-24T18:28:41.189Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/cloudbuild.googleapis.com 200
+[debug] [2024-10-24T18:28:41.189Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/cloudbuild.googleapis.com [omitted]
+[info] +  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2024-10-24T18:28:41.196Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/runtimeconfig.googleapis.com 200
+[debug] [2024-10-24T18:28:41.196Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2024-10-24T18:28:41.198Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/cloudfunctions.googleapis.com 200
+[debug] [2024-10-24T18:28:41.199Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/cloudfunctions.googleapis.com [omitted]
+[info] +  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2024-10-24T18:28:41.220Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/artifactregistry.googleapis.com 200
+[debug] [2024-10-24T18:28:41.220Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/artifactregistry.googleapis.com [omitted]
+[info] +  artifactregistry: required API artifactregistry.googleapis.com is enabled 
+[debug] [2024-10-24T18:28:41.221Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:28:41.221Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:28:41.221Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/brothers-website-439019/adminSdkConfig [none]
+[debug] [2024-10-24T18:28:42.851Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/brothers-website-439019/adminSdkConfig 200
+[debug] [2024-10-24T18:28:42.852Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/brothers-website-439019/adminSdkConfig {"projectId":"brothers-website-439019","storageBucket":"brothers-website-439019.appspot.com","locationId":"us-central"}
+[debug] [2024-10-24T18:28:42.853Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:28:42.853Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:28:42.854Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/brothers-website-439019/configs [none]
+[debug] [2024-10-24T18:28:43.752Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/brothers-website-439019/configs 200
+[debug] [2024-10-24T18:28:43.753Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/brothers-website-439019/configs {"configs":[{"name":"projects/brothers-website-439019/configs/gmail"}]}
+[debug] [2024-10-24T18:28:43.754Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:28:43.754Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:28:43.754Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/brothers-website-439019/configs/gmail/variables [none]
+[debug] [2024-10-24T18:28:44.465Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/brothers-website-439019/configs/gmail/variables 200
+[debug] [2024-10-24T18:28:44.466Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/brothers-website-439019/configs/gmail/variables {"variables":[{"name":"projects/brothers-website-439019/configs/gmail/variables/email","updateTime":"2024-10-23T17:12:19.793667805Z"},{"name":"projects/brothers-website-439019/configs/gmail/variables/password","updateTime":"2024-10-23T17:13:15.993035021Z"}]}
+[debug] [2024-10-24T18:28:44.466Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:28:44.466Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:28:44.466Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:28:44.466Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:28:44.466Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/brothers-website-439019/configs/gmail/variables/email [none]
+[debug] [2024-10-24T18:28:44.469Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/brothers-website-439019/configs/gmail/variables/password [none]
+[debug] [2024-10-24T18:28:45.208Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/brothers-website-439019/configs/gmail/variables/email 200
+[debug] [2024-10-24T18:28:45.209Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/brothers-website-439019/configs/gmail/variables/email {"name":"projects/brothers-website-439019/configs/gmail/variables/email","updateTime":"2024-10-23T17:12:19.793667805Z","text":"lw4540279@gmail.com"}
+[debug] [2024-10-24T18:28:45.308Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/brothers-website-439019/configs/gmail/variables/password 200
+[debug] [2024-10-24T18:28:45.309Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/brothers-website-439019/configs/gmail/variables/password {"name":"projects/brothers-website-439019/configs/gmail/variables/password","updateTime":"2024-10-23T17:13:15.993035021Z","text":"wairouneigang"}
+[debug] [2024-10-24T18:28:45.317Z] Validating nodejs source
+[warn] !  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[debug] [2024-10-24T18:28:48.245Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "@types/nodemailer": "^6.4.16",
+    "cors": "^2.8.5",
+    "firebase-admin": "^12.6.0",
+    "firebase-functions": "^6.0.1",
+    "nodemailer": "^6.9.15"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.1.0",
+    "typescript": "^4.9.0"
+  },
+  "private": true
+}
+[debug] [2024-10-24T18:28:48.246Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[debug] [2024-10-24T18:28:48.249Z] Could not find functions.yaml. Must use http discovery
+[debug] [2024-10-24T18:28:48.288Z] Found firebase-functions binary at 'E:\brotherhood\pro\brotherhood\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8123
+
+[debug] [2024-10-24T18:28:49.091Z] Got response from /__/functions.yaml {"endpoints":{"sendInviteEmail":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"callableTrigger":{},"entryPoint":"sendInviteEmail"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[debug] [2024-10-24T18:28:49.110Z] Failed to call quitquitquit. This often means the server failed to start request to http://localhost:8123/__/quitquitquit failed, reason: connect EACCES ::1:8123 {"message":"request to http://localhost:8123/__/quitquitquit failed, reason: connect EACCES ::1:8123","type":"system","errno":"EACCES","code":"EACCES"}
+[info] i  extensions: ensuring required API firebaseextensions.googleapis.com is enabled... 
+[debug] [2024-10-24T18:28:59.130Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:28:59.130Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:28:59.130Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/firebaseextensions.googleapis.com [none]
+[debug] [2024-10-24T18:28:59.131Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/firebaseextensions.googleapis.com x-goog-quota-user=projects/brothers-website-439019
+[debug] [2024-10-24T18:29:00.683Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/firebaseextensions.googleapis.com 200
+[debug] [2024-10-24T18:29:00.683Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/firebaseextensions.googleapis.com [omitted]
+[info] +  extensions: required API firebaseextensions.googleapis.com is enabled 
+[debug] [2024-10-24T18:29:00.685Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-10-24T18:29:00.685Z] > authorizing via signed-in user (okovtun747@gmail.com)
+[debug] [2024-10-24T18:29:00.686Z] [iam] checking project brothers-website-439019 for permissions ["firebase.projects.get","firebaseextensions.instances.list"]
+[debug] [2024-10-24T18:29:00.686Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:00.687Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:00.687Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/brothers-website-439019:testIamPermissions [none]
+[debug] [2024-10-24T18:29:00.687Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/brothers-website-439019:testIamPermissions x-goog-quota-user=projects/brothers-website-439019
+[debug] [2024-10-24T18:29:00.687Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/brothers-website-439019:testIamPermissions {"permissions":["firebase.projects.get","firebaseextensions.instances.list"]}
+[debug] [2024-10-24T18:29:01.779Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/brothers-website-439019:testIamPermissions 200
+[debug] [2024-10-24T18:29:01.780Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/brothers-website-439019:testIamPermissions {"permissions":["firebase.projects.get","firebaseextensions.instances.list"]}
+[debug] [2024-10-24T18:29:01.781Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:01.781Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:01.784Z] >>> [apiv2][query] GET https://firebaseextensions.googleapis.com/v1beta/projects/brothers-website-439019/instances pageSize=100&pageToken=
+[debug] [2024-10-24T18:29:03.553Z] <<< [apiv2][status] GET https://firebaseextensions.googleapis.com/v1beta/projects/brothers-website-439019/instances 200
+[debug] [2024-10-24T18:29:03.553Z] <<< [apiv2][body] GET https://firebaseextensions.googleapis.com/v1beta/projects/brothers-website-439019/instances {}
+[info] i  functions: preparing functions directory for uploading... 
+[info] i  functions: packaged E:\brotherhood\pro\brotherhood\functions (85.21 KB) for uploading 
+[debug] [2024-10-24T18:29:03.703Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:03.703Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:03.704Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/projects/brothers-website-439019/locations/-/functions [none]
+[debug] [2024-10-24T18:29:05.417Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/projects/brothers-website-439019/locations/-/functions 200
+[debug] [2024-10-24T18:29:05.417Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/projects/brothers-website-439019/locations/-/functions {}
+[debug] [2024-10-24T18:29:05.418Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:05.418Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:05.419Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/brothers-website-439019/locations/-/functions filter=environment%3D%22GEN_2%22
+[debug] [2024-10-24T18:29:07.191Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/brothers-website-439019/locations/-/functions 200
+[debug] [2024-10-24T18:29:07.192Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/brothers-website-439019/locations/-/functions {}
+[info] i  functions: ensuring required API run.googleapis.com is enabled... 
+[debug] [2024-10-24T18:29:07.199Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:07.200Z] Checked if tokens are valid: true, expires at: 1729798094282
+[info] i  functions: ensuring required API eventarc.googleapis.com is enabled... 
+[debug] [2024-10-24T18:29:07.202Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:07.202Z] Checked if tokens are valid: true, expires at: 1729798094282
+[info] i  functions: ensuring required API pubsub.googleapis.com is enabled... 
+[debug] [2024-10-24T18:29:07.204Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:07.204Z] Checked if tokens are valid: true, expires at: 1729798094282
+[info] i  functions: ensuring required API storage.googleapis.com is enabled... 
+[debug] [2024-10-24T18:29:07.206Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:07.207Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:07.208Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/run.googleapis.com [none]
+[debug] [2024-10-24T18:29:07.208Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/run.googleapis.com x-goog-quota-user=projects/brothers-website-439019
+[debug] [2024-10-24T18:29:07.213Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/eventarc.googleapis.com [none]
+[debug] [2024-10-24T18:29:07.214Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/eventarc.googleapis.com x-goog-quota-user=projects/brothers-website-439019
+[debug] [2024-10-24T18:29:07.219Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/pubsub.googleapis.com [none]
+[debug] [2024-10-24T18:29:07.220Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/pubsub.googleapis.com x-goog-quota-user=projects/brothers-website-439019
+[debug] [2024-10-24T18:29:07.225Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/storage.googleapis.com [none]
+[debug] [2024-10-24T18:29:07.225Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/storage.googleapis.com x-goog-quota-user=projects/brothers-website-439019
+[debug] [2024-10-24T18:29:08.656Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/storage.googleapis.com 200
+[debug] [2024-10-24T18:29:08.657Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/storage.googleapis.com [omitted]
+[info] +  functions: required API storage.googleapis.com is enabled 
+[debug] [2024-10-24T18:29:08.661Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/pubsub.googleapis.com 200
+[debug] [2024-10-24T18:29:08.661Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/pubsub.googleapis.com [omitted]
+[info] +  functions: required API pubsub.googleapis.com is enabled 
+[debug] [2024-10-24T18:29:08.662Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/eventarc.googleapis.com 200
+[debug] [2024-10-24T18:29:08.662Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/eventarc.googleapis.com [omitted]
+[info] +  functions: required API eventarc.googleapis.com is enabled 
+[debug] [2024-10-24T18:29:08.758Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/run.googleapis.com 200
+[debug] [2024-10-24T18:29:08.759Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/brothers-website-439019/services/run.googleapis.com [omitted]
+[info] +  functions: required API run.googleapis.com is enabled 
+[info] i  functions: generating the service identity for pubsub.googleapis.com... 
+[debug] [2024-10-24T18:29:08.761Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:08.761Z] Checked if tokens are valid: true, expires at: 1729798094282
+[info] i  functions: generating the service identity for eventarc.googleapis.com... 
+[debug] [2024-10-24T18:29:08.762Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:08.762Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:08.763Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1beta1/projects/276631612429/services/pubsub.googleapis.com:generateServiceIdentity [none]
+[debug] [2024-10-24T18:29:08.766Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1beta1/projects/276631612429/services/eventarc.googleapis.com:generateServiceIdentity [none]
+[debug] [2024-10-24T18:29:10.242Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1beta1/projects/276631612429/services/pubsub.googleapis.com:generateServiceIdentity 200
+[debug] [2024-10-24T18:29:10.243Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/276631612429/services/pubsub.googleapis.com:generateServiceIdentity {"name":"operations/finished.DONE_OPERATION","done":true,"response":{"@type":"type.googleapis.com/google.api.serviceusage.v1beta1.ServiceIdentity","email":"service-276631612429@gcp-sa-pubsub.iam.gserviceaccount.com","uniqueId":"100325165395709745008"}}
+[debug] [2024-10-24T18:29:10.248Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1beta1/projects/276631612429/services/eventarc.googleapis.com:generateServiceIdentity 200
+[debug] [2024-10-24T18:29:10.248Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/276631612429/services/eventarc.googleapis.com:generateServiceIdentity {"name":"operations/finished.DONE_OPERATION","done":true,"response":{"@type":"type.googleapis.com/google.api.serviceusage.v1beta1.ServiceIdentity","email":"service-276631612429@gcp-sa-eventarc.iam.gserviceaccount.com","uniqueId":"115403168170777884306"}}
+[debug] [2024-10-24T18:29:10.250Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:10.250Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:10.251Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/brothers-website-439019 [none]
+[debug] [2024-10-24T18:29:10.931Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/brothers-website-439019 200
+[debug] [2024-10-24T18:29:10.932Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/brothers-website-439019 {"projectId":"brothers-website-439019","projectNumber":"276631612429","displayName":"Brothers website","name":"projects/brothers-website-439019","resources":{"hostingSite":"brothers-website-439019","storageBucket":"brothers-website-439019.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_0f702f27-6342-45f1-9093-3b0665bfbf77"}
+[debug] [2024-10-24T18:29:10.934Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:10.934Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:10.935Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/brothers-website-439019/billingInfo [none]
+[debug] [2024-10-24T18:29:12.355Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/brothers-website-439019/billingInfo 200
+[debug] [2024-10-24T18:29:12.356Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/brothers-website-439019/billingInfo {"name":"projects/brothers-website-439019/billingInfo","projectId":"brothers-website-439019","billingAccountName":"billingAccounts/01D8A9-FE6A67-A2E910","billingEnabled":true}
+[debug] [2024-10-24T18:29:12.361Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:12.362Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:12.362Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v2/projects/brothers-website-439019/locations/us-central1/functions:generateUploadUrl [none]
+[debug] [2024-10-24T18:29:14.111Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v2/projects/brothers-website-439019/locations/us-central1/functions:generateUploadUrl 200
+[debug] [2024-10-24T18:29:14.111Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/brothers-website-439019/locations/us-central1/functions:generateUploadUrl {"uploadUrl":"https://storage.googleapis.com/gcf-v2-uploads-276631612429-us-central1/1316c286-41fd-41f2-8eb5-a9ad65aed22f.zip?GoogleAccessId=service-276631612429@gcf-admin-robot.iam.gserviceaccount.com&Expires=1729796353&Signature=HPlaBJbdnXD5HlWKmXfg3aA%2FFMHhuS0WipjLSmfrx8kIWMADW0YcRy92h4rVgjjhcRok%2FqZkjCxP87SLKJ%2FmYj2CY2mFgYoYVpJ%2FYjD5DDbcakfmGWfw3J6RIRVla%2FwJUjOp1NO6cIzolvednPmOPwQorx%2FyQOuhpv6nS9%2F49u0C%2BY0FXN5WHopM5xVGhNtZnTA71OpslJpf8oKSwLlaR6FHwk9%2B%2FRjajOefDqvjzbSeIaPhEBQnQa0ZUx5DM2MWKxbTPum1ubLmCtsss5rEnjyo7FQOgUX%2BJi3rHvp4s7FyoxrYopX1yTrmU8Uvk8F3v8XwKVcbo3EMHi8KN0oEow%3D%3D","storageSource":{"bucket":"gcf-v2-uploads-276631612429-us-central1","object":"1316c286-41fd-41f2-8eb5-a9ad65aed22f.zip"}}
+[debug] [2024-10-24T18:29:14.112Z] >>> [apiv2][query] PUT https://storage.googleapis.com/gcf-v2-uploads-276631612429-us-central1/1316c286-41fd-41f2-8eb5-a9ad65aed22f.zip GoogleAccessId=service-276631612429%40gcf-admin-robot.iam.gserviceaccount.com&Expires=1729796353&Signature=HPlaBJbdnXD5HlWKmXfg3aA%2FFMHhuS0WipjLSmfrx8kIWMADW0YcRy92h4rVgjjhcRok%2FqZkjCxP87SLKJ%2FmYj2CY2mFgYoYVpJ%2FYjD5DDbcakfmGWfw3J6RIRVla%2FwJUjOp1NO6cIzolvednPmOPwQorx%2FyQOuhpv6nS9%2F49u0C%2BY0FXN5WHopM5xVGhNtZnTA71OpslJpf8oKSwLlaR6FHwk9%2B%2FRjajOefDqvjzbSeIaPhEBQnQa0ZUx5DM2MWKxbTPum1ubLmCtsss5rEnjyo7FQOgUX%2BJi3rHvp4s7FyoxrYopX1yTrmU8Uvk8F3v8XwKVcbo3EMHi8KN0oEow%3D%3D
+[debug] [2024-10-24T18:29:14.112Z] >>> [apiv2][body] PUT https://storage.googleapis.com/gcf-v2-uploads-276631612429-us-central1/1316c286-41fd-41f2-8eb5-a9ad65aed22f.zip [stream]
+[debug] [2024-10-24T18:29:21.084Z] <<< [apiv2][status] PUT https://storage.googleapis.com/gcf-v2-uploads-276631612429-us-central1/1316c286-41fd-41f2-8eb5-a9ad65aed22f.zip 200
+[debug] [2024-10-24T18:29:21.084Z] <<< [apiv2][body] PUT https://storage.googleapis.com/gcf-v2-uploads-276631612429-us-central1/1316c286-41fd-41f2-8eb5-a9ad65aed22f.zip [omitted]
+[info] +  functions: functions folder uploaded successfully 
+[info] i  functions: creating Node.js 18 (2nd Gen) function sendInviteEmail(us-central1)... 
+[debug] [2024-10-24T18:29:21.102Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:21.103Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:21.104Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v2/projects/brothers-website-439019/locations/us-central1/functions functionId=sendInviteEmail
+[debug] [2024-10-24T18:29:21.104Z] >>> [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/brothers-website-439019/locations/us-central1/functions {"name":"projects/brothers-website-439019/locations/us-central1/functions/sendInviteEmail","buildConfig":{"runtime":"nodejs18","entryPoint":"sendInviteEmail","source":{"storageSource":{"bucket":"gcf-v2-uploads-276631612429-us-central1","object":"1316c286-41fd-41f2-8eb5-a9ad65aed22f.zip"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""}},"serviceConfig":{"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"brothers-website-439019\",\"storageBucket\":\"brothers-website-439019.appspot.com\",\"locationId\":\"us-central\"}","GCLOUD_PROJECT":"brothers-website-439019","EVENTARC_CLOUD_EVENT_SOURCE":"projects/brothers-website-439019/locations/us-central1/services/sendInviteEmail","FUNCTION_TARGET":"sendInviteEmail"},"ingressSettings":null,"timeoutSeconds":null,"serviceAccountEmail":null,"availableMemory":"256Mi","minInstanceCount":null,"maxInstanceCount":null,"maxInstanceRequestConcurrency":80,"availableCpu":"1","vpcConnector":null,"vpcConnectorEgressSettings":null},"labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"f2ba3ac4a944eeec385499989b3c6094dd438aff"}}
+[debug] [2024-10-24T18:29:25.650Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v2/projects/brothers-website-439019/locations/us-central1/functions 200
+[debug] [2024-10-24T18:29:25.650Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/brothers-website-439019/locations/us-central1/functions {"name":"projects/brothers-website-439019/locations/us-central1/operations/operation-1729794564333-6253d2e8aa124-b513c2e4-5ed44e73","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2024-10-24T18:29:24.909659964Z","target":"projects/brothers-website-439019/locations/us-central1/functions/sendInviteEmail","verb":"create","cancelRequested":false,"apiVersion":"v2"},"done":false}
+[debug] [2024-10-24T18:29:25.651Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:25.651Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:25.651Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/brothers-website-439019/locations/us-central1/operations/operation-1729794564333-6253d2e8aa124-b513c2e4-5ed44e73 [none]
+[debug] [2024-10-24T18:29:27.154Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/brothers-website-439019/locations/us-central1/operations/operation-1729794564333-6253d2e8aa124-b513c2e4-5ed44e73 200
+[debug] [2024-10-24T18:29:27.154Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/brothers-website-439019/locations/us-central1/operations/operation-1729794564333-6253d2e8aa124-b513c2e4-5ed44e73 {"name":"projects/brothers-website-439019/locations/us-central1/operations/operation-1729794564333-6253d2e8aa124-b513c2e4-5ed44e73","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2024-10-24T18:29:24.909659964Z","target":"projects/brothers-website-439019/locations/us-central1/functions/sendInviteEmail","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/brothers-website-439019/locations/us-central1/functions/sendInviteEmail","buildConfig":{"runtime":"nodejs18","entryPoint":"sendInviteEmail","source":{"storageSource":{"bucket":"gcf-v2-sources-276631612429-us-central1","object":"sendInviteEmail/function-source.zip","generation":"1729794564645060"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"serviceAccount":"projects/brothers-website-439019/serviceAccounts/276631612429-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/brothers-website-439019/locations/us-central1/services/sendinviteemail","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"brothers-website-439019\",\"storageBucket\":\"brothers-website-439019.appspot.com\",\"locationId\":\"us-central\"}","GCLOUD_PROJECT":"brothers-website-439019","EVENTARC_CLOUD_EVENT_SOURCE":"projects/brothers-website-439019/locations/us-central1/services/sendInviteEmail","FUNCTION_TARGET":"sendInviteEmail","LOG_EXECUTION_ID":"true"},"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"276631612429-compute@developer.gserviceaccount.com","availableMemory":"256Mi","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"f2ba3ac4a944eeec385499989b3c6094dd438aff"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Build in progress","state":"IN_PROGRESS","resource":"projects/276631612429/locations/us-central1/builds/423006b2-9a30-41a1-b337-99016682bd22","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/423006b2-9a30-41a1-b337-99016682bd22?project=276631612429"},{"name":"SERVICE","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION","buildName":"projects/276631612429/locations/us-central1/builds/423006b2-9a30-41a1-b337-99016682bd22"},"done":false}
+[debug] [2024-10-24T18:29:27.655Z] [create-default-us-central1-sendInviteEmail] Retrying task index 0
+[debug] [2024-10-24T18:29:27.656Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:27.656Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:27.656Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/brothers-website-439019/locations/us-central1/operations/operation-1729794564333-6253d2e8aa124-b513c2e4-5ed44e73 [none]
+[debug] [2024-10-24T18:29:29.169Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/brothers-website-439019/locations/us-central1/operations/operation-1729794564333-6253d2e8aa124-b513c2e4-5ed44e73 200
+[debug] [2024-10-24T18:29:29.169Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/brothers-website-439019/locations/us-central1/operations/operation-1729794564333-6253d2e8aa124-b513c2e4-5ed44e73 {"name":"projects/brothers-website-439019/locations/us-central1/operations/operation-1729794564333-6253d2e8aa124-b513c2e4-5ed44e73","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2024-10-24T18:29:24.909659964Z","target":"projects/brothers-website-439019/locations/us-central1/functions/sendInviteEmail","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/brothers-website-439019/locations/us-central1/functions/sendInviteEmail","buildConfig":{"runtime":"nodejs18","entryPoint":"sendInviteEmail","source":{"storageSource":{"bucket":"gcf-v2-sources-276631612429-us-central1","object":"sendInviteEmail/function-source.zip","generation":"1729794564645060"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"serviceAccount":"projects/brothers-website-439019/serviceAccounts/276631612429-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/brothers-website-439019/locations/us-central1/services/sendinviteemail","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"brothers-website-439019\",\"storageBucket\":\"brothers-website-439019.appspot.com\",\"locationId\":\"us-central\"}","GCLOUD_PROJECT":"brothers-website-439019","EVENTARC_CLOUD_EVENT_SOURCE":"projects/brothers-website-439019/locations/us-central1/services/sendInviteEmail","FUNCTION_TARGET":"sendInviteEmail","LOG_EXECUTION_ID":"true"},"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"276631612429-compute@developer.gserviceaccount.com","availableMemory":"256Mi","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"f2ba3ac4a944eeec385499989b3c6094dd438aff"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Build in progress","state":"IN_PROGRESS","resource":"projects/276631612429/locations/us-central1/builds/423006b2-9a30-41a1-b337-99016682bd22","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/423006b2-9a30-41a1-b337-99016682bd22?project=276631612429"},{"name":"SERVICE","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION","buildName":"projects/276631612429/locations/us-central1/builds/423006b2-9a30-41a1-b337-99016682bd22"},"done":false}
+[debug] [2024-10-24T18:29:30.172Z] [create-default-us-central1-sendInviteEmail] Retrying task index 0
+[debug] [2024-10-24T18:29:30.173Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:30.173Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:30.173Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/brothers-website-439019/locations/us-central1/operations/operation-1729794564333-6253d2e8aa124-b513c2e4-5ed44e73 [none]
+[debug] [2024-10-24T18:29:31.802Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/brothers-website-439019/locations/us-central1/operations/operation-1729794564333-6253d2e8aa124-b513c2e4-5ed44e73 200
+[debug] [2024-10-24T18:29:31.803Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/brothers-website-439019/locations/us-central1/operations/operation-1729794564333-6253d2e8aa124-b513c2e4-5ed44e73 {"name":"projects/brothers-website-439019/locations/us-central1/operations/operation-1729794564333-6253d2e8aa124-b513c2e4-5ed44e73","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2024-10-24T18:29:24.909659964Z","target":"projects/brothers-website-439019/locations/us-central1/functions/sendInviteEmail","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/brothers-website-439019/locations/us-central1/functions/sendInviteEmail","buildConfig":{"runtime":"nodejs18","entryPoint":"sendInviteEmail","source":{"storageSource":{"bucket":"gcf-v2-sources-276631612429-us-central1","object":"sendInviteEmail/function-source.zip","generation":"1729794564645060"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"serviceAccount":"projects/brothers-website-439019/serviceAccounts/276631612429-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/brothers-website-439019/locations/us-central1/services/sendinviteemail","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"brothers-website-439019\",\"storageBucket\":\"brothers-website-439019.appspot.com\",\"locationId\":\"us-central\"}","GCLOUD_PROJECT":"brothers-website-439019","EVENTARC_CLOUD_EVENT_SOURCE":"projects/brothers-website-439019/locations/us-central1/services/sendInviteEmail","FUNCTION_TARGET":"sendInviteEmail","LOG_EXECUTION_ID":"true"},"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"276631612429-compute@developer.gserviceaccount.com","availableMemory":"256Mi","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"f2ba3ac4a944eeec385499989b3c6094dd438aff"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Build in progress","state":"IN_PROGRESS","resource":"projects/276631612429/locations/us-central1/builds/423006b2-9a30-41a1-b337-99016682bd22","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/423006b2-9a30-41a1-b337-99016682bd22?project=276631612429"},{"name":"SERVICE","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION","buildName":"projects/276631612429/locations/us-central1/builds/423006b2-9a30-41a1-b337-99016682bd22"},"done":false}
+[debug] [2024-10-24T18:29:33.804Z] [create-default-us-central1-sendInviteEmail] Retrying task index 0
+[debug] [2024-10-24T18:29:33.805Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:33.805Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:33.805Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/brothers-website-439019/locations/us-central1/operations/operation-1729794564333-6253d2e8aa124-b513c2e4-5ed44e73 [none]
+[debug] [2024-10-24T18:29:35.402Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/brothers-website-439019/locations/us-central1/operations/operation-1729794564333-6253d2e8aa124-b513c2e4-5ed44e73 200
+[debug] [2024-10-24T18:29:35.402Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/brothers-website-439019/locations/us-central1/operations/operation-1729794564333-6253d2e8aa124-b513c2e4-5ed44e73 {"name":"projects/brothers-website-439019/locations/us-central1/operations/operation-1729794564333-6253d2e8aa124-b513c2e4-5ed44e73","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2024-10-24T18:29:24.909659964Z","target":"projects/brothers-website-439019/locations/us-central1/functions/sendInviteEmail","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/brothers-website-439019/locations/us-central1/functions/sendInviteEmail","buildConfig":{"runtime":"nodejs18","entryPoint":"sendInviteEmail","source":{"storageSource":{"bucket":"gcf-v2-sources-276631612429-us-central1","object":"sendInviteEmail/function-source.zip","generation":"1729794564645060"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"serviceAccount":"projects/brothers-website-439019/serviceAccounts/276631612429-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/brothers-website-439019/locations/us-central1/services/sendinviteemail","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"brothers-website-439019\",\"storageBucket\":\"brothers-website-439019.appspot.com\",\"locationId\":\"us-central\"}","GCLOUD_PROJECT":"brothers-website-439019","EVENTARC_CLOUD_EVENT_SOURCE":"projects/brothers-website-439019/locations/us-central1/services/sendInviteEmail","FUNCTION_TARGET":"sendInviteEmail","LOG_EXECUTION_ID":"true"},"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"276631612429-compute@developer.gserviceaccount.com","availableMemory":"256Mi","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"f2ba3ac4a944eeec385499989b3c6094dd438aff"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Build in progress","state":"IN_PROGRESS","resource":"projects/276631612429/locations/us-central1/builds/423006b2-9a30-41a1-b337-99016682bd22","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/423006b2-9a30-41a1-b337-99016682bd22?project=276631612429"},{"name":"SERVICE","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION","buildName":"projects/276631612429/locations/us-central1/builds/423006b2-9a30-41a1-b337-99016682bd22"},"done":false}
+[debug] [2024-10-24T18:29:39.415Z] [create-default-us-central1-sendInviteEmail] Retrying task index 0
+[debug] [2024-10-24T18:29:39.416Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:39.416Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:39.416Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/brothers-website-439019/locations/us-central1/operations/operation-1729794564333-6253d2e8aa124-b513c2e4-5ed44e73 [none]
+[debug] [2024-10-24T18:29:41.038Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/brothers-website-439019/locations/us-central1/operations/operation-1729794564333-6253d2e8aa124-b513c2e4-5ed44e73 200
+[debug] [2024-10-24T18:29:41.038Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/brothers-website-439019/locations/us-central1/operations/operation-1729794564333-6253d2e8aa124-b513c2e4-5ed44e73 {"name":"projects/brothers-website-439019/locations/us-central1/operations/operation-1729794564333-6253d2e8aa124-b513c2e4-5ed44e73","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2024-10-24T18:29:24.909659964Z","target":"projects/brothers-website-439019/locations/us-central1/functions/sendInviteEmail","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/brothers-website-439019/locations/us-central1/functions/sendInviteEmail","buildConfig":{"runtime":"nodejs18","entryPoint":"sendInviteEmail","source":{"storageSource":{"bucket":"gcf-v2-sources-276631612429-us-central1","object":"sendInviteEmail/function-source.zip","generation":"1729794564645060"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"serviceAccount":"projects/brothers-website-439019/serviceAccounts/276631612429-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/brothers-website-439019/locations/us-central1/services/sendinviteemail","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"brothers-website-439019\",\"storageBucket\":\"brothers-website-439019.appspot.com\",\"locationId\":\"us-central\"}","GCLOUD_PROJECT":"brothers-website-439019","EVENTARC_CLOUD_EVENT_SOURCE":"projects/brothers-website-439019/locations/us-central1/services/sendInviteEmail","FUNCTION_TARGET":"sendInviteEmail","LOG_EXECUTION_ID":"true"},"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"276631612429-compute@developer.gserviceaccount.com","availableMemory":"256Mi","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"f2ba3ac4a944eeec385499989b3c6094dd438aff"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Build in progress","state":"IN_PROGRESS","resource":"projects/276631612429/locations/us-central1/builds/423006b2-9a30-41a1-b337-99016682bd22","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/423006b2-9a30-41a1-b337-99016682bd22?project=276631612429"},{"name":"SERVICE","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION","buildName":"projects/276631612429/locations/us-central1/builds/423006b2-9a30-41a1-b337-99016682bd22"},"done":false}
+[debug] [2024-10-24T18:29:49.044Z] [create-default-us-central1-sendInviteEmail] Retrying task index 0
+[debug] [2024-10-24T18:29:49.045Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:49.045Z] Checked if tokens are valid: true, expires at: 1729798094282
+[debug] [2024-10-24T18:29:49.045Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/brothers-website-439019/locations/us-central1/operations/operation-1729794564333-6253d2e8aa124-b513c2e4-5ed44e73 [none]
+[debug] [2024-10-24T18:29:50.632Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/brothers-website-439019/locations/us-central1/operations/operation-1729794564333-6253d2e8aa124-b513c2e4-5ed44e73 200
+[debug] [2024-10-24T18:29:50.632Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/brothers-website-439019/locations/us-central1/operations/operation-1729794564333-6253d2e8aa124-b513c2e4-5ed44e73 {"name":"projects/brothers-website-439019/locations/us-central1/operations/operation-1729794564333-6253d2e8aa124-b513c2e4-5ed44e73","metadata":{"@type":"type.googleapis.com/google.cloud.functions.v2.OperationMetadata","createTime":"2024-10-24T18:29:24.909659964Z","target":"projects/brothers-website-439019/locations/us-central1/functions/sendInviteEmail","verb":"create","cancelRequested":false,"apiVersion":"v2","requestResource":{"@type":"type.googleapis.com/google.cloud.functions.v2.Function","name":"projects/brothers-website-439019/locations/us-central1/functions/sendInviteEmail","buildConfig":{"runtime":"nodejs18","entryPoint":"sendInviteEmail","source":{"storageSource":{"bucket":"gcf-v2-sources-276631612429-us-central1","object":"sendInviteEmail/function-source.zip","generation":"1729794564645060"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"serviceAccount":"projects/brothers-website-439019/serviceAccounts/276631612429-compute@developer.gserviceaccount.com","automaticUpdatePolicy":{}},"serviceConfig":{"service":"projects/brothers-website-439019/locations/us-central1/services/sendinviteemail","timeoutSeconds":60,"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"brothers-website-439019\",\"storageBucket\":\"brothers-website-439019.appspot.com\",\"locationId\":\"us-central\"}","GCLOUD_PROJECT":"brothers-website-439019","EVENTARC_CLOUD_EVENT_SOURCE":"projects/brothers-website-439019/locations/us-central1/services/sendInviteEmail","FUNCTION_TARGET":"sendInviteEmail","LOG_EXECUTION_ID":"true"},"ingressSettings":"ALLOW_ALL","serviceAccountEmail":"276631612429-compute@developer.gserviceaccount.com","availableMemory":"256Mi","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"labels":{"deployment-tool":"cli-firebase","deployment-callable":"true","firebase-functions-hash":"f2ba3ac4a944eeec385499989b3c6094dd438aff"},"environment":"GEN_2"},"stages":[{"name":"BUILD","message":"Build in progress","state":"IN_PROGRESS","resource":"projects/276631612429/locations/us-central1/builds/423006b2-9a30-41a1-b337-99016682bd22","resourceUri":"https://console.cloud.google.com/cloud-build/builds;region=us-central1/423006b2-9a30-41a1-b337-99016682bd22?project=276631612429"},{"name":"SERVICE","state":"NOT_STARTED"}],"operationType":"CREATE_FUNCTION","buildName":"projects/276631612429/locations/us-central1/builds/423006b2-9a30-41a1-b337-99016682bd22"},"done":false}

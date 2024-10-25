@@ -37,3 +37,17 @@ export const useAuthListener = () => {
 
     return { user, loading };
 };
+export const getUserDoc=async(uid:string)=>{
+  try {
+    const userDoc=  (await getDoc(doc(db, "users", uid)))
+    if(userDoc.exists()){
+      return {nickName:userDoc.data().nickName,avatar:userDoc.data().avatar,userName:userDoc.data().userName}
+
+    }
+
+
+
+  } catch (err:any) {
+    
+  }
+}

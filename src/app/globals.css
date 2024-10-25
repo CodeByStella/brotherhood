@@ -1,57 +1,57 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-  
+
 @layer utilities {
   .slider-buttons {
-      @apply bg-navy p-3 rounded-full shadow text-white focus:outline-none
+    @apply bg-navy p-3 rounded-full shadow text-white focus:outline-none;
   }
   .tags {
-      @apply px-3 py-2 border border-navy text-sm text-navy rounded-lg font-semibold
+    @apply px-3 py-2 border border-navy text-sm text-navy rounded-lg font-semibold;
   }
   .editProfileFormContainer {
-    @apply block md:flex max-xl:flex-wrap gap-8 mt-10
+    @apply block md:flex max-xl:flex-wrap gap-8 mt-10;
   }
   .registrationFormContainer {
-    @apply mt-10 flex flex-1 flex-col items-center flex-wrap mx-auto max-w-[1000px]
+    @apply mt-10 flex flex-1 flex-col items-center flex-wrap mx-auto max-w-[1000px];
   }
   .registrationForm {
-    @apply flex flex-col  gap-3 mt-14
+    @apply flex flex-col  gap-3 mt-14 w-full;
   }
   .formRow {
-    @apply flex max-xl:flex-col justify-start max-md:gap-6 md:gap-10 lg:gap-12
+    @apply flex max-xl:flex-col justify-start max-md:gap-6 md:gap-10 lg:gap-12;
   }
   .formInput {
-    @apply w-full px-3 py-2.5 bg-button border-none rounded-md focus-visible:outline-none disabled:cursor-not-allowed text-black text-sm
+    @apply w-full px-3 py-2.5 bg-button border-none rounded-md focus-visible:outline-none disabled:cursor-not-allowed text-black text-sm;
   }
   .formLabel {
-    @apply text-[15px] text-black font-medium
+    @apply text-[15px] text-black font-medium whitespace-nowrap;
   }
   .filterCheckbox {
-    @apply w-4 h-4 text-navy rounded-full
+    @apply w-4 h-4 text-navy rounded-full;
   }
   .checkboxFlex {
-    @apply flex items-center gap-3
+    @apply flex items-center gap-3;
   }
   .ListBar {
-    @apply bg-button w-full h-auto max-sm:px-5 sm:px-7 md:px-10 py-5 border-none rounded-md focus-visible:outline-none
+    @apply bg-button w-full h-auto max-sm:px-5 sm:px-7 md:px-10 py-5 border-none rounded-md focus-visible:outline-none;
   }
   .functionsInput {
-    @apply max-sm:w-[150px] sm:w-[200px] bg-button px-4 py-2 text-sm text-black rounded-md border border-gray-400 focus-visible:outline-none disabled:cursor-not-allowed
+    @apply max-sm:w-[150px] sm:w-[200px] bg-button px-4 py-2 text-sm text-black rounded-md border border-gray-400 focus-visible:outline-none disabled:cursor-not-allowed;
   }
   .formContainer {
-    @apply flex flex-1 flex-col justify-start gap-2 mt-4
+    @apply flex flex-1 flex-col justify-start gap-2 mt-4;
   }
   .astrics {
-    @apply text-red-500  
+    @apply text-red-500;
   }
   .formNextButton {
-    @apply  flex justify-center w-[100px] text-base  px-8 py-2 
+    @apply flex justify-center w-[100px] text-base  px-8 py-2;
   }
   .formBackButton {
-    @apply border  px-8 py-2   text-base font-semibold 
+    @apply border  px-8 py-2   text-base font-semibold;
   }
   .mainContainer {
-    @apply md:mx-24 max-sm:mx-20 sm:mx-14 mt-10 pt-6 pb-20 max-sm:px-10 sm:px-20 shadow-lg bg-white
+    @apply md:mx-24 max-sm:mx-20 sm:mx-14 mt-10 pt-6 pb-20 max-sm:px-10 sm:px-20 shadow-lg bg-white;
   }
 }

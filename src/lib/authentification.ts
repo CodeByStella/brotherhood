@@ -81,11 +81,10 @@ export const Register = async(data:USER) => {
         state,
         city,
         password='',
-        referalId
+        referralId
       }=data
-
       const collectionRef=collection(db,'users')
-      const q=query(collectionRef,where('userName','==',userName))
+      let q=query(collectionRef,where('userName','==',userName))
       const usernameDoc = await getDocs(q);
       if (!usernameDoc.empty) {
         throw new Error("Username already taken. Choose another name.");
@@ -93,7 +92,6 @@ export const Register = async(data:USER) => {
       
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user; // Get the user object
-
   
       console.log(user)
         // Send email verification
@@ -101,6 +99,15 @@ export const Register = async(data:USER) => {
 
         // Sign out the user immediately after registration
         await signOut(auth);
+
+        q=query(collectionRef,where('userName','==',referralId))
+        const users=await getDocs(q)
+let referral=''
+        if(!users.empty){
+          referral=users.docs[0].data().uid
+        }
+
+
 
        
 
@@ -125,10 +132,11 @@ export const Register = async(data:USER) => {
         country,
         state,
         city,
-        referalId,
+        referralId:referral,
         followers:0,
         following:0,
-        avatar:''
+        avatar:'',
+        createdAt:Date.now()
         // Add any additional fields you need
       };
 

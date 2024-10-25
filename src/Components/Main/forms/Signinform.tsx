@@ -12,6 +12,7 @@ import store from "@/redux/store"
 import { set_current_user } from "@/redux/features/UserSlice"
 import { useRouter } from "next/navigation"
 import { Login, resetPassWord } from "@/lib/authentification"
+import { error, success } from "@/Components/ui/notification"
 
 export default function Signinform() {
 
@@ -35,14 +36,14 @@ export default function Signinform() {
 
         setIsLoading(false)
         if (state === 'success') {
-            notification.success({ message: msg, showProgress: true, pauseOnHover: true })
+            success(msg)
             store.dispatch(set_current_user(data))
             replace('/')
         } else {
             if (msg === 'Email not verified. Please verify.') {
                 notification.error({ message: msg, showProgress: true, pauseOnHover: true, description: 'Verification email sent. Please check your inbox.' })
             }
-            else notification.error({ message: msg, showProgress: true, pauseOnHover: true })
+            else error(msg)
         }
 
 
@@ -50,8 +51,8 @@ export default function Signinform() {
     const resetpassword = async () => {
         if (identifier === '') return
         const { state, msg } = await resetPassWord(identifier)
-        if (state === 'success') notification.success({ message: msg, showProgress: true, pauseOnHover: true })
-        if (state === 'error') notification.error({ message: msg, showProgress: true, pauseOnHover: true })
+        if (state === 'success') success(msg)
+        if (state === 'error') error(msg)
     }
 
     return (

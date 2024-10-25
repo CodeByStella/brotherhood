@@ -8,12 +8,11 @@ import { useState } from "react"
 
 interface ReferencesProps {
     fieldchange: (references: string[]) => void;
-    defaultValue?: string[]
+    value: string[]
 }
 
-export default function References({ fieldchange, defaultValue = [] }: ReferencesProps) {
+export default function References({ fieldchange, value: savedValue = [] }: ReferencesProps) {
 
-    const [references, setAddReferences] = useState<string[]>(defaultValue)
     const [inputControlledValue, setInputControlledValue] = useState<string>("")
 
     async function handleAddNewReference() {
@@ -21,7 +20,7 @@ export default function References({ fieldchange, defaultValue = [] }: Reference
             message.error("No refrece added")
             return
         }
-        if (references.includes(inputControlledValue)) {
+        if (savedValue.includes(inputControlledValue)) {
             message.error("Reference is already present")
             return
         }
@@ -34,19 +33,18 @@ export default function References({ fieldchange, defaultValue = [] }: Reference
         // Make sure the link is not already added
 
         setInputControlledValue("")
-        setAddReferences((addedReferences) => [...addedReferences, inputControlledValue])
         // Update the field Value
-        fieldchange([...references, inputControlledValue])
+        fieldchange([...savedValue, inputControlledValue])
     }
     const handleDeleteReference = (value: string) => {
-        setAddReferences(references.filter(v => v !== value))
+        fieldchange(savedValue.filter(v => v !== value))
     }
 
     return (
         <section className='mt-10'>
-            <h3 className="text-2xl text-black font-semibold"> References </h3>
+            <h3 className="text-xl text-black font-semibold"> References </h3>
             <div className="mt-4">
-                {references.length > 0 && references.map((reference, i) => {
+                {savedValue.length > 0 && savedValue.map((reference, i) => {
                     return (
                         <div key={i} className="flex items-center gap-4 mt-3">
                             <p> {i + 1} . </p>
@@ -56,7 +54,7 @@ export default function References({ fieldchange, defaultValue = [] }: Reference
                     )
                 })}
             </div>
-            {references.length !== 3 && <span className="flex flex-col items-start mt-10">
+            {savedValue.length !== 3 && <span className="flex flex-col items-start mt-10">
 
                 <Space.Compact className="w-full" >
 

@@ -6,11 +6,13 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/Components/ui/form"
 import { USER } from "./Registrationform";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/router";
 import { useState } from "react";
 import Link from "next/link";
 import { Button, Checkbox, message, notification } from "antd";
 import { Register } from "@/lib/authentification";
+import { useRouter, useSearchParams } from "next/navigation";
+import { error, success } from "@/Components/ui/notification";
 
 interface Section3FormProps {
     userData: USER | undefined,
@@ -23,12 +25,14 @@ export default function Section3Form({ userData, setCurrentlySelected, setFilled
     const [acceptedTos, setAcceptedTos] = useState<boolean>(false)
     const [isLoading, setLoading] = useState(false)
     const { push, replace } = useRouter()
+    const searchParams = useSearchParams()
+
     const form = useForm<z.infer<typeof Section3FormSchema>>({
         resolver: zodResolver(Section3FormSchema),
         defaultValues: {
             password: userData?.password || "",
             confirmPassword: userData?.confirmPassword || "",
-            referalId: userData?.referalId || ''
+            referralId: userData?.referralId || searchParams.get("referral") || ''
         },
     })
 
@@ -48,16 +52,16 @@ export default function Section3Form({ userData, setCurrentlySelected, setFilled
             ...userData,
             password: values.password,
             confirmPassword: values.confirmPassword,
-            referalId: values.referalId
+            referralId: values.referralId
         }
         setLoading(true)
         const { state, msg } = await Register(finalData)
         console.log({ state, msg })
         if (state === 'success') {
-            notification.success({ message: msg, showProgress: true, pauseOnHover: true })
+            success(msg)
             replace('/sign-in')
         } else {
-            notification.error({ message: msg, showProgress: true, pauseOnHover: true })
+            error(msg)
         }
 
         setLoading(false)
@@ -104,7 +108,7 @@ export default function Section3Form({ userData, setCurrentlySelected, setFilled
                         />
                         <FormField
                             control={form.control}
-                            name="referalId"
+                            name="referralId"
                             render={({ field }) => (
                                 <FormItem className="formContainer mt-6">
                                     <FormLabel className="formLabel">

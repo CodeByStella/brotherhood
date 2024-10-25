@@ -15,13 +15,15 @@ import { Button, DatePicker, message, notification, Spin } from "antd"
 import dayjs from "dayjs"
 import { Select as AntSelect, Tag } from 'antd'
 import languages from '@/constants/languages.json'
-import { SaveOutlined } from '@ant-design/icons'
+import { EditOutlined, SaveOutlined } from '@ant-design/icons'
 import { editUserData } from "@/lib/editProfile"
 import { uploadFile } from "@/lib/uploadfile"
 import { useAuthListener } from "@/lib/persistentSession"
 import store from "@/redux/store"
 import { USER as StoreUser } from "@/constants";
 import { set_current_user } from "@/redux/features/UserSlice"
+import { WriteBioModal } from "../../WriteBioModal"
+import { error, success } from "@/Components/ui/notification"
 
 
 interface EditProfileProps {
@@ -32,6 +34,7 @@ export default function EditProfile({ userData }: EditProfileProps) {
 
 
     const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [modalVisible, setModalVisible] = useState(false)
 
 
     const form = useForm<z.infer<typeof EditProfileSchema>>({
@@ -57,7 +60,8 @@ export default function EditProfile({ userData }: EditProfileProps) {
             newPassword: "",
             confirmPassword: "",
             country: userData?.country,
-            state: userData?.state
+            state: userData?.state,
+            referralId: userData?.referralId
         },
     })
     async function onSubmit(values: z.infer<typeof EditProfileSchema>) {
@@ -82,11 +86,11 @@ export default function EditProfile({ userData }: EditProfileProps) {
 
             if (state === 'success') {
                 store.dispatch(set_current_user(data as StoreUser))
-                notification.success({ message: msg, showProgress: true, pauseOnHover: true })
+                success(msg)
             } else if (state === 'info') {
                 notification.info({ message: msg, showProgress: true, pauseOnHover: true })
             } else {
-                notification.error({ message: msg, showProgress: true, pauseOnHover: true })
+                error(msg)
             }
 
 
@@ -510,15 +514,33 @@ export default function EditProfile({ userData }: EditProfileProps) {
                                         </FormItem>
                                     )}
                                 />
+                                <FormField
+                                    control={form.control}
+                                    name="referralId"
+                                    render={({ field }) => (
+                                        <FormItem className="formContainer">
+                                            <FormLabel className="formLabel">
+                                                Referral Id
+                                            </FormLabel>
+                                            <FormControl>
+                                                <input type="text" placeholder="Referral id" className="formInput" {...field} />
+                                            </FormControl>
+                                            <FormMessage className='text-sm text-red-500' />
+                                        </FormItem>
+                                    )}
+                                />
                             </div>
                         </section>
                     </div>
-                    <div className="flex justify-center mt-20">
-                        <Button size="large" htmlType="submit" type="primary" loading={isLoading} className="" icon={<SaveOutlined />} >
-                            Save Changes </Button>
+                    <div className="flex flex-wrap justify-center mt-20 gap-4">
+                        <Button size="large" onClick={() => setModalVisible(true)} className="w-full  min-[400px]:w-auto transition " htmlType="button" type="dashed" icon={<EditOutlined />} >
+                            Write my bio </Button>
+                        <Button size="large" htmlType="submit" type="primary" loading={isLoading} className="w-full  min-[400px]:w-auto" icon={<SaveOutlined />} >
+                            Save changes </Button>
                     </div>
                 </form>
             </Form>
+            <WriteBioModal visible={modalVisible} setVisible={setModalVisible} />
         </section>
     )
 }

@@ -1,7 +1,7 @@
 import { USER } from "@/Components/Main/forms/Registrationform";
 import { getAuth, updateEmail, updatePassword, User, verifyBeforeUpdateEmail } from "firebase/auth";
 import { auth, db } from "./firebase";
-import {  doc, getDoc, updateDoc } from "firebase/firestore";
+import {  collection, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
 
 interface NewData extends USER{
   newPassword?:string,
@@ -11,7 +11,23 @@ interface NewData extends USER{
 
 
 const updateUserData = async (userId:string, userData:any ) => {
+  
+      //  const collectionRef=collection(db,'users')
+      // const q=query(collectionRef,where('userName','==',userData.userName))
+      // const usernameDoc = await getDocs(q);
+      // if (!usernameDoc.empty) {
+      //   throw new Error("Username already taken. Choose another name.");
+      // }
+  userData.email=auth.currentUser?.email
   const userRef = doc(db, "users", userId);
+  const collectionRef=collection(db,'users')
+  const q=query(collectionRef,where('userName','==',userData.referralId))
+        const users=await getDocs(q)
+        let referral=''
+        if(!users.empty){
+          referral=users.docs[0].data().uid
+        }
+        userData.referralId=referral
   await updateDoc(userRef, userData);
 };
 

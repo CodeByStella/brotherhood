@@ -229,7 +229,7 @@ export const TERMS_AND_CONDITIONS = [
 export type USER = {
   uid: string;
   email: string;
-  username: string;
+  userName: string;
   firstName: string;
   lastName: string;
   followers: number;
@@ -238,21 +238,9 @@ export type USER = {
   city: string;
   country: string;
   avatar: string;
+  nickName:string;
 };
-export const Profile_Links = [
-  {
-    path: "/profile",
-    label: "Bio",
-  },
-  {
-    path: "/profile/blogs",
-    label: "Blog",
-  },
-  {
-    path: "/profile/videos",
-    label: "Videos",
-  },
-];
+
 export const PROFILE_PAGE_PATH = "/profile";
 export const Registration_Sections = [1, 2, 3];
 export enum ACTION_TYPES {
@@ -298,14 +286,7 @@ export const AUTHENTICATED_SIDEBAR_NAV_LINKS = [
     path: "/followers-list",
   },
 ];
-export const Referals = [
-  {
-    id: 1,
-    name: "Toshiro",
-    joinedDate: "28/3/24",
-    country: "India",
-  },
-];
+
 export const HTTPS = "https://";
 
 export const HTTP = "http://";
@@ -342,3 +323,23 @@ export enum MemberPositionType {
 export const PREVIEW_BUTTON_DATA = "preview";
 
 export const BUTTON_ATTRIBUTE_NAME = "data-button-data";
+
+export  interface Blog {
+  id: string,
+  image?: string,
+  references?: string[],
+  postedBy: string,
+  title: string,
+  type: 'video' | 'default',
+  uid: string,
+  content: string,
+  tags?: string[],
+  created_at: {
+      seconds: number,
+      nanoseconds: number
+  },
+  likes?: string[],
+  comments?: number,
+  totalViews?: number,
+  video: string
+}

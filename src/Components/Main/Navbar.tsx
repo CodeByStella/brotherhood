@@ -24,7 +24,7 @@ export default function Navbar() {
     const [openSidebarNav, setOpenSidebarNav] = useState<boolean>(false)
     const [iconPopOver, setIconPopOver] = useState<boolean>(false)
     const [searchValue, setSearchValue] = useState("")
-    const { isAuthenticated, isLoading, data } = useSelector((state: RootState) => state.user)
+    const { isAuthenticated, isLoading,  data } = useSelector((state: RootState) => state.user)
     const searchParams = useSearchParams()
     const { replace } = useRouter()
     const pathname = usePathname()

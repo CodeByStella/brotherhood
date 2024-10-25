@@ -7,18 +7,17 @@ import { IoCloseOutline } from "react-icons/io5";
 interface TagsProps {
     fieldchange: (tags: string[]) => void;
     title: string,
+    value: string[]
 }
 
-export default function Tags({ fieldchange, title }: TagsProps) {
+export default function Tags({ fieldchange, title, value: tags = [] }: TagsProps) {
 
-    const [tags, setAddTags] = useState<string[]>([])
     const [inputControlledValue, setInputControlledValue] = useState<string>("")
 
     function handleDeleteTag(tag: string) {
         // Remove the tag from the array of tags
         const newTags = tags.filter((element) => element !== tag)
         // Update the arrays
-        setAddTags(newTags)
         // Update the form field
         fieldchange(newTags)
     }
@@ -37,7 +36,6 @@ export default function Tags({ fieldchange, title }: TagsProps) {
         // clear the input field
         setInputControlledValue("")
         // add the tag into the array
-        setAddTags((allTags) => [...allTags, inputControlledValue])
         // Update the form field. Data will be stale if we used tags state
         fieldchange([...tags, inputControlledValue])
     }

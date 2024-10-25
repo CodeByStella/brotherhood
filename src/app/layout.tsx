@@ -33,7 +33,10 @@ export default function RootLayout({
           <StoreProvider>
             <WaveEffectProvider> {/* Wrap children with WaveEffectProvider */}
               <Navbar />
-              <section>
+
+              <section className="max-w-screen-xl  m-auto " style={{
+                overflowWrap: 'break-word'
+              }} >
                 {children}
               </section>
               <Footer />

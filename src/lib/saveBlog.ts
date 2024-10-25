@@ -17,11 +17,11 @@ export const saveBlog = async (blog: Blog) => {
   try {
     const userId = auth.currentUser?.uid;
     if (!userId) {
-      throw new Error("Please sign in, before poset blog");
+      throw new Error("Please sign in before post blog");
     }
 
-    const userRef = doc(collection(db, "blogs")); // This generates a unique ID for a new document
-    await setDoc(userRef, { ...blog, uid: userId });
+    const blogRef = doc(collection(db, "blogs")); // This generates a unique ID for a new document
+    await setDoc(blogRef, { ...blog, uid: userId });
 
     return {
       state: "success",

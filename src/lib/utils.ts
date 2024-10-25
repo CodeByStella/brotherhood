@@ -15,3 +15,9 @@ export const urlcheck = async function checkIfDomainExists(url: string) {
   }
   return false;
 };
+export const generateID=()=>{
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
+    const randomDigits = Math.floor(100000 + Math.random() * 900000).toString(); // Generates 6-digit number
+    return `${randomLetter}${randomDigits}`;
+}

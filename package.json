@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ant-design/happy-work-theme": "^1.0.0",
     "@ant-design/icons": "^5.5.1",
     "@firebasegen/default-connector": "file:dataconnect-generated/js/default-connector",
     "@hookform/resolvers": "^3.3.4",
@@ -24,9 +25,13 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cmdk": "^0.2.0",
+    "date-fns": "^4.1.0",
     "dayjs": "^1.11.13",
     "firebase": "^10.14.1",
+    "firebase-admin": "^12.6.0",
+    "firebase-functions": "^6.1.0",
     "html-react-parser": "^5.1.10",
+    "html-to-text": "^9.0.5",
     "jodit-react": "^4.1.2",
     "language-list": "^0.0.3",
     "lucide-react": "^0.376.0",
@@ -45,6 +50,7 @@
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/nodemailer": "^6.4.16",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/validator": "^13.11.10",

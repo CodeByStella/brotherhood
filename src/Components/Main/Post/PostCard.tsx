@@ -3,120 +3,147 @@
 import Image from "next/image";
 import postImage from "../../../../public/postImage.png"
 import VideoImage from "../../../../public/videoImage.jpg"
-import { AiOutlineLike, AiOutlineDislike, AiOutlineComment } from "react-icons/ai";
-import { IoStatsChartOutline } from "react-icons/io5";
-import { FaRegTrashAlt } from "react-icons/fa";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { CiEdit } from "react-icons/ci";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+
 import { PROFILE_PAGE_PATH } from "@/constants";
 import { formatNumber } from "@/utils";
 import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
 
+import { formatDistanceToNow } from 'date-fns'
+import { Button, Typography, Tag, Tooltip, Popconfirm, Modal } from "antd";
+import { EditOutlined, DeleteOutlined, LikeOutlined, CommentOutlined, EyeOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
+import { PlayCircle } from "lucide-react";
+import { deleteBlog } from "@/lib/Blog";
+import { error, success } from "@/Components/ui/notification";
+const { htmlToText } = require('html-to-text')
+
 interface PostCardProps {
+    id: string,
+    image?: string,
+    references?: string[],
+    uid: string,
     postedBy: string,
-    date: string,
+    date: Date,
     title: string,
     description: string,
     tags: string[],
     likes: number,
-    dislikes: number,
     comments: number
     totalViews: number
-    isVideoPost?: boolean
-}
+    isVideoPost?: boolean,
+    video?: string,
+    onDelete: (id: string) => void
 
+}
+const colors = ['blue', 'cyan', 'green', 'magenta', 'purple', 'red', 'orange', 'gold', 'lime', 'geekblue']
 // Data about the post is fetched deom the database later. for now it is static
 
-export default function PostCard({postedBy, date, title, description, tags, likes, dislikes, comments, totalViews, isVideoPost=false} : PostCardProps) {
+export default function PostCard({ image, id, uid, postedBy, date, title, description, tags, likes, comments, totalViews, isVideoPost = false, video, onDelete }: PostCardProps) {
 
-    const {isAuthenticated, data} = useSelector((state: RootState) => state.user)
-    const pathname = usePathname()
-    const isProfilePage = isAuthenticated && data && pathname.startsWith(PROFILE_PAGE_PATH)
+    const { isAuthenticated, data } = useSelector((state: RootState) => state.user)
+    const searchParams = useSearchParams()
+    const userId = searchParams.get("id")
+    const isProfilePage = isAuthenticated && data && userId === data.uid
     const viewCount = formatNumber(totalViews)
 
-    function handleLike(){
+    const { replace } = useRouter()
 
-    }
-    function handleDislike(){
 
+    const handleDelete = async () => {
+        const { state, msg } = await deleteBlog(id)
+        if (state === 'success') success(msg)
+        else error(msg)
+        onDelete(id)
     }
-    function handleDeletePost(){
+    const handleEdit = () => {
+        if (isVideoPost) {
+            replace(`/create-video-blog?id=${id}`)
+        } else {
+            replace(`/create-post?id=${id}`)
+        }
+    }
 
-    }
+
 
     return (
-        <section className='border border-grey-200 mt-8 flex items-start gap-10 rounded-xl p-8'>
-            {isVideoPost ? (
-                <Link href={'/'} className="max-lg:hidden">
-                    <Image src={VideoImage} alt="post-image" width={200} height={250}/> 
-                </Link>
-            ) : (
-                <Image src={postImage} alt="post-image" width={200} height={200} className="max-lg:hidden rounded-sm" />
-            )}
-            <div className="flex flex-1 flex-col justify-start">
-                <div className="flex flex-wrap max-sm:gap-4 items-start justify-between">
-                    <span className="flex items-center gap-3 text-sm">
-                        <h5> By {postedBy} </h5>
-                        <p className="text-stone-600"> {date} </p>
-                    </span> 
-                    {isProfilePage && <button className="flex items-center gap-2 text-orangeRed font-bold mr-6">
-                        <FaRegTrashAlt className="w-4 h-4" />
-                        <p className="text-base"> Delete </p>
-                    </button>
-                    }
+        <div className="border mt-4 max-w-2xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden md:max-w-3xl hover:shadow-xl transition-shadow duration-300 ease-in-out">
+            <div className="md:flex">
+                <div className="md:shrink-0 relative">
+                    <Image
+                        className="h-48 w-full object-cover md:h-full md:w-48  "
+                        src={image ? image : isVideoPost ? VideoImage : postImage}
+                        alt="Blog post thumbnail"
+                        width={200}
+                        height={200}
+                    />
+                    {isVideoPost && <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40  opacity-100 transition-opacity duration-300">
+                        <PlayCircle className="w-16 h-16 text-white opacity-80" />
+                    </div>}
                 </div>
-                <span className="mt-4">
-                    <h2 className="text-[20px] text-black font-bold"> {title} </h2>
-                    <p className="max-sm:text-xs sm:text-[15px] mt-2 leading-6 max-w-[750px]"> 
-                        {description}
-                    </p>
-                </span>
-                {/* TODO: Add the route for the post details */}
-                <Link href={'/'} className="text-sm text-orangeRed font-semibold mt-3"> Continue reading </Link>
-                <div className="flex flex-wrap max-sm:gap-5 items-center justify-between">
-                    <span className="flex items-center gap-4 mt-4">
-                        {tags.map((tag) => {
+                <div className="p-8 w-full">
+                    <div className="flex justify-between items-center">
+                        <div>
+                            <p className="block mt-1 text-lg leading-tight font-medium text-black ">{title}</p>
+                            <p className="mt-2 text-slate-500 text-sm">By <strong className="hover:underline cursor-pointer" onClick={() => replace(`/profile?id=${uid}`)} >{postedBy}</strong> · {formatDistanceToNow(date, { addSuffix: true })}</p>
+                        </div>
+                        {isProfilePage && <div className="flex space-x-2">
+                            <Tooltip title="Edit">
+                                <Button icon={<EditOutlined />} onClick={handleEdit} size="small" />
+                            </Tooltip>
+                            <Tooltip title="Delete">
+                                <Popconfirm title='Are you sure you want to delete this item?' onConfirm={handleDelete} okText='Yes,delete it' cancelText='No' placement='topRight' okButtonProps={{ className: 'bg-red-500' }} >
+
+                                    <Button icon={<DeleteOutlined />} size="small" danger />
+                                </Popconfirm>
+                            </Tooltip>
+                        </div>}
+
+                    </div>
+
+                    <Typography.Paragraph className="mt-2 text-slate-500 text-wrap whitespace-break-spaces" ellipsis={{ rows: 3 }} >
+                        {htmlToText(description).replace(/(\r\n|\n|\r)/gm, " ")}
+
+                    </Typography.Paragraph  >
+                    <div className="mt-4 flex flex-wrap gap-2">
+                        {tags.map((tag, i) => {
                             return (
-                                <button key={tag} className="tags"> {tag} </button>
+                                <Tag color={colors[i]} key={i}>{tag}</Tag>
                             )
                         })}
-                    </span>
-                    {isProfilePage && <span className="xl:mr-4">
-                        <button className="maxw-[140px] bg-navy px-4 py-2 rounded-md text-white text-base focus-visible:outline-none flex items-center gap-2">
-                            <CiEdit className="w-4 h-4 text-white" />
-                            <p className="text-white text-sm"> Edit </p>
-                        </button>
-                    </span>}
 
-                </div>
-                <span className="flex items-center max-sm:gap-4 sm:gap-7 max-sm:mt-7 sm:mt-5">
-                    <div className="flex items-center gap-2">
-                        {/* TODO: Add the route for the post to make a comment */}
-                        <Link href={"/"}>
-                            <AiOutlineComment className="w-6 h-6 text-stone-600" />
+                    </div>
+                    <div className="mt-4 flex items-center justify-between">
+                        <div className="flex space-x-4">
+                            <Tooltip title="Comments">
+                                <span className="flex items-center text-sm text-gray-500">
+                                    <CommentOutlined className="mr-1" />
+                                    {comments}
+                                </span>
+                            </Tooltip>
+                            <Tooltip title="Likes">
+                                <span className="flex items-center text-sm text-gray-500">
+                                    <LikeOutlined className="mr-1" />
+                                    {likes}
+                                </span>
+                            </Tooltip>
+
+                            <Tooltip title="Views">
+                                <span className="flex items-center text-sm text-gray-500">
+                                    <EyeOutlined className="mr-1" />
+                                    {viewCount}
+                                </span>
+                            </Tooltip>
+                        </div>
+                        <Link href={`/view-post/${id}`} >
+                            <Button type="primary" size="small">
+                                Continue reading
+                            </Button>
                         </Link>
-                        <p className="text-sm text-stone-600 font-semibold pt-1"> {comments} </p>
                     </div>
-                    <div className="flex items-center gap-2">
-                        <button onClick={handleLike}>
-                            <AiOutlineLike className="w-6 h-6 text-stone-600" />
-                        </button>
-                        <p className="text-sm text-stone-600 font-semibold pt-1"> {likes} </p>
-                    </div>
-                    <div className="flex items-center gap-3">
-                        <button onClick={handleDislike}>
-                            <AiOutlineDislike className="w-6 h-6 mt-1.5 text-stone-600" />
-                        </button>
-                        <p className="text-sm text-stone-600 font-semibold pt-1"> {dislikes} </p>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <IoStatsChartOutline className="w-5 h-5 text-stone-600" />
-                        <p className="text-sm text-stone-600 font-semibold pt-1"> {viewCount} </p>
-                    </div>
-                </span>
+                </div>
             </div>
-        </section>
+        </div>
     )
 }

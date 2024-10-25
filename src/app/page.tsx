@@ -1,10 +1,6 @@
 import Header from "@/Components/Main/Header";
-import Pagination from "@/Components/Main/Pagination";
 import PostList from "@/Components/Main/Post/PostList";
-import Catagory from "@/Components/Small Pieces/Catagory";
-import Search from "@/Components/Small Pieces/Search";
 import TopPageHeader from "@/Components/Small Pieces/TopPageHeader";
-import { QUERY_PARAMS } from "@/constants";
 
 interface Props {
   searchParams: {
@@ -29,15 +25,16 @@ export default function Home({ searchParams }: Props) {
             <span className="flex items-center justify-center text-white max-sm:text-lg sm:text-xl lg:text-3xl font-palanquin"> Blog Posts </span>
           </div>
         </div>
-        <div className="mt-10">
+        {/* <div className="mt-10">
           <Search queryParameter={QUERY_PARAMS.catagory} placeholder="Search categories" background="bg-button" />
-        </div>
+        </div> */}
         {/* FAKE DATA */}
         {/* <Catagory name="Nigerian Festivals" followers={200} members={15} posts={156} catagoryPath={catagoryPath} /> */}
         <PostList />
         {/* FAKE VALUE TO SIMULATE TOTAL NUMBER OF POSTS */}
-        <div className="md:mr-10">
-          <Pagination TotalNumberOfResults={15} pageSize={5} />
+        <div className="mt-10">
+
+
         </div>
         {/* <Ad title="Google Ad Spot" buttonLabel="View" /> */}
       </div>

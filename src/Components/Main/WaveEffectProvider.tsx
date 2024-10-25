@@ -1,7 +1,7 @@
 // WaveEffectProvider.tsx
 "use client"; // This ensures that this component is a client component
 
-import { ConfigProvider, ConfigProviderProps, GetProp } from "antd";
+import { App, ConfigProvider, ConfigProviderProps, GetProp } from "antd";
 
 type WaveConfig = GetProp<ConfigProviderProps, 'wave'>
 
@@ -66,7 +66,13 @@ const WaveEffectProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   return (
-    <ConfigProvider wave={{ showEffect }}>
+    <ConfigProvider theme={{
+      token: {
+        fontFamily: 'Arial, Helvetica, Roboto, system-ui, sans-serif',
+        fontSize: 16
+      }
+    }} wave={{ showEffect }}
+    >
       {children}
     </ConfigProvider>
   );

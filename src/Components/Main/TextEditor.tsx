@@ -8,12 +8,12 @@ declare global {
 }
 interface Prop {
     onChange?: (value: string) => void,
-    defaultValue?: string
+    value?: string
 }
 
 import { useEffect, useRef } from 'react';
 
-const EditorPage = ({ onChange = () => { }, defaultValue = '' }: Prop) => {
+const EditorPage = ({ onChange = () => { }, value = '' }: Prop) => {
 
     var refdiv = useRef(null);
 
@@ -23,13 +23,14 @@ const EditorPage = ({ onChange = () => { }, defaultValue = '' }: Prop) => {
         if (typeof window !== 'undefined' && window.RichTextEditor) {
             // Initialize the RichTextEditor
             const rte = new window.RichTextEditor(refdiv.current, { showFloatImageToolBar: true });
-            rte.setHTMLCode(defaultValue);
-            rte.attachEvent("change", function (e: Event) {
-                onChange(rte.getHTMLCode())
-            });
-
+            rte.setHTMLCode(value);
+            if ('' === rte.getHTMLCode())
+                rte.attachEvent("change", function (e: Event) {
+                    onChange(rte.getHTMLCode())
+                });
+            return () => { }
         }
-    }, []);
+    }, [value]);
 
     return (
         <div ref={refdiv} />

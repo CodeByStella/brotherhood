@@ -91,7 +91,7 @@ export default function NavButtons() {
                     </Link>
                     <div className="hover:cursor-pointer">
                         <Avatar
-                            onClick={() => push('/profile')}
+                            onClick={() => push(`/profile?id=${data.uid}`)}
                             className="bg-navy"
                             size={{ xs: 32, sm: 36, md: 40, lg: 44, xl: 48, xxl: 52 }}
                             icon={<UserOutlined />}
@@ -110,7 +110,7 @@ export default function NavButtons() {
                                 <div className="flex flex-col justify-start px-6">
                                     {/* <Avatar closePopUp={true} setOpenPopUp={setOpenPopUp} /> */}
                                     <Avatar
-                                        onClick={() => push('/profile')}
+                                        onClick={() => push(`/profile?id=${data.uid}`)}
                                         className="bg-navy"
                                         size={{ xs: 32, sm: 36, md: 40, lg: 44, xl: 48, xxl: 52 }}
                                         icon={<UserOutlined />}

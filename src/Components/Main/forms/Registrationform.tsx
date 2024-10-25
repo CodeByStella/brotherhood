@@ -31,7 +31,7 @@ export interface USER {
     city?: string,
     password?: string,
     confirmPassword?: string,
-    referalId?: string,
+    referralId?: string,
     avatar?: string,
 }
 
