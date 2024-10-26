@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import SidebarNav from "./SidebarNav";
 import { Popover, PopoverTrigger, PopoverContent } from "../ui/popover";
+import { AUTHENTICATED_SIDEBAR_NAV_LINKS, NON_AUTHENTICATED_SIDEBAR_NAV_LINKS } from "@/constants";
 
 
 export default function Navbar() {
@@ -24,9 +25,9 @@ export default function Navbar() {
     const [openSidebarNav, setOpenSidebarNav] = useState<boolean>(false)
     const [iconPopOver, setIconPopOver] = useState<boolean>(false)
     const [searchValue, setSearchValue] = useState("")
-    const { isAuthenticated, isLoading,  data } = useSelector((state: RootState) => state.user)
+    const { isAuthenticated, isLoading, data } = useSelector((state: RootState) => state.user)
     const searchParams = useSearchParams()
-    const { replace } = useRouter()
+    const { replace, push } = useRouter()
     const pathname = usePathname()
     const queryString = searchParams.get(QUERY_PARAMS.search)
 
@@ -70,12 +71,18 @@ export default function Navbar() {
                         </Link>
                         <Popover >
                             <PopoverTrigger className="ml-4">
-                                <div onClick={() => setIconPopOver((open) => !open)}>
+                                <div onClick={() => setIconPopOver(true)}>
                                     <RiArrowDropDownLine className="w-4 h-4" />
                                 </div>
                             </PopoverTrigger>
-                            {iconPopOver && <PopoverContent className="w-[150px] h-auto mt-4">
-                                <p> specific pages will be placed here</p>
+                            {iconPopOver && <PopoverContent className="w-48 h-auto mt-4">
+                                <p> {(isAuthenticated ? AUTHENTICATED_SIDEBAR_NAV_LINKS : NON_AUTHENTICATED_SIDEBAR_NAV_LINKS).map((route) => {
+                                    return (
+                                        <div key={route.label}>
+                                            <button onClick={() => push(route.path)} className="text-base text-black hover:text-blue-500"> {route.label} </button>
+                                        </div>
+                                    )
+                                })}</p>
                             </PopoverContent>}
                         </Popover>
                     </div>

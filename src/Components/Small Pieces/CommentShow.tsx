@@ -2,7 +2,6 @@
 
 import Image from "next/image"
 import { CommentType } from "./CommentList";
-import CommentForm from "./CommentForm";
 import { MdOutlineReply } from "react-icons/md";
 import { AiOutlineLike, AiOutlineComment } from "react-icons/ai";
 import Avatar from "./Avatar";
@@ -81,7 +80,6 @@ export default function CommentShow({ commentId, comments }: CommentShowProps) {
 
                         </div>
                     </div>
-                    {openReplyBox && <CommentForm parentId={mainComment.parentId} blogCategoryId={mainComment.blogCategoryId} />}
                 </div>
             </div>
             {showComments && children.length > 0 && <div className="sm:pl-4">

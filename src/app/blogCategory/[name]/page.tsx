@@ -126,7 +126,7 @@ export default async function page({params} : BlogCatagoryDetailsProps) {
             </div>
             <div className="mt-5">
                 {/* TODO: Fake blog category id */}
-                <CommentForm parentId={null} blogCategoryId={2} />
+                {/* <CommentForm parentId={null} blogCategoryId={2} /> */}
                 <CommentList comments={comments} />
             </div>
         </main>

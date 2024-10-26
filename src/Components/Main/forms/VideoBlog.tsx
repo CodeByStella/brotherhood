@@ -50,8 +50,9 @@ export default function VideoBlog() {
     })
 
     useEffect(() => {
-        setLoading(true)
+
         if (blogId) {
+            setLoading(true)
             getBlog(blogId).then((res: any) => {
                 console.log(res)
                 setLoading(false)

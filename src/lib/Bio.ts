@@ -19,7 +19,7 @@ export const getBio=async(userid?:string)=>{
     
     if(uid){
        const bio=await getDoc(doc(db,'bios',uid))
-    if(!bio.exists())throw new Error("Data not found")
+    if(!bio.exists())throw new Error("Bio not found")
     return bio.data().content
     }
    

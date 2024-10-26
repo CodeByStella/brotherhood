@@ -256,6 +256,10 @@ export const NON_AUTHENTICATED_SIDEBAR_NAV_LINKS = [
     path: "/register",
   },
   {
+    label: "Sign In",
+    path: "/register",
+  },
+  {
     label: "Terms of service",
     path: "/terms-and-conditions",
   },
@@ -281,10 +285,10 @@ export const AUTHENTICATED_SIDEBAR_NAV_LINKS = [
     label: "Create Video Blog",
     path: "/create-video-blog",
   },
-  {
-    label: "Follow list",
-    path: "/followers-list",
-  },
+  // {
+  //   label: "Follow list",
+  //   path: "/followers-list",
+  // },
 ];
 
 export const HTTPS = "https://";

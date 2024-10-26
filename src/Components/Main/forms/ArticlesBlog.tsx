@@ -43,8 +43,9 @@ export default function ArticlesBlog() {
     })
 
     useEffect(() => {
-        setLoading(true)
+        
         if (blogId) {
+            setLoading(true)
             getBlog(blogId).then((res: any) => {
                 setLoading(false)
                 const resData = res as Blog

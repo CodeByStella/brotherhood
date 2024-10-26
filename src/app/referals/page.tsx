@@ -1,24 +1,24 @@
 'use client'
 
-import Pagination from "@/Components/Main/Pagination";
-// import Table from "@/Components/Main/Tabel"
 import TopPageHeader from "@/Components/Small Pieces/TopPageHeader";
 import { sendInvitation } from "@/lib/email";
+import { DataType, getReferrals } from "@/lib/referrals";
 import { RootState } from "@/redux/store";
 import { isValidEmail } from "@/utils";
 import { CopyOutlined } from "@ant-design/icons";
-import { Button, Input, message, Space, Table } from "antd";
-import dynamic from "next/dynamic";
+import {Input, message, Table } from "antd";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 const { Search } = Input
+
 
 export default function page() {
     const { data } = useSelector((state: RootState) => state.user)    
     const [originalUrl, setOriginalUrl] = useState('')
     const [email, setEmail] = useState('')
     const [errorText, setErrorText] = useState('')
+    const [dataSource,setDataSource]=useState<DataType[]>([])
 
     useEffect(() => {
         if (!!window) {
@@ -57,7 +57,10 @@ export default function page() {
 
 
     useEffect(()=>{
-
+        getReferrals().then(res=>{
+            console.log(res)
+            setDataSource(res||[])
+        })
     },[])
 
     return (
@@ -71,16 +74,15 @@ export default function page() {
                     <span className="text-red-500 text-sm pl-1"  >{errorText}</span>
                 </span>
             </div>
-            {/* <Table referals={Referals} /> */}
-            {/* <Pagination TotalNumberOfResults={12} pageSize={10} /> */}
+           
             <Table
                 bordered
                 columns={[
                 {
                     title:'S/N' ,
-                    dataIndex:'rank',
                     key:'rank',
-                    align:'center'
+                    align:'center',
+                    dataIndex:'num'
                 },
                 {
                     title:'Name' ,
@@ -90,9 +92,12 @@ export default function page() {
                 },
                 {
                     title:'Joined Date' ,
-                    dataIndex:'date',
+                    dataIndex:'createdAt',
                     key:'date',
-                    align:'center'
+                    align:'center',
+                    render:(value)=> {
+                        return <>{new Date(value).toDateString()}</>
+                    },
                 },
                 {
                     title:'Country' ,
@@ -100,7 +105,9 @@ export default function page() {
                     key:'contry',
                     align:'center'
                 }
-            ]}  />
+            ]}
+            rowKey={(record)=>record.num} 
+            dataSource={dataSource} />
         </main>
     )
 }
